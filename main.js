@@ -36,3 +36,62 @@ for (let i = 0; i <array2.length; i++) {
         console.log(array2[i]);
     }
 }
+
+//функция palindrome
+function Palindrome(word) {
+    let Reverse = word.split('').reverse().join('');
+    if (Reverse === word) {
+        return true;
+    } else {
+        return false;
+    }
+}
+console.log(Palindrome('шалаш'));
+
+//функция min(a, b),возвращает меньшее из чисел
+function min(a, b) {
+    if (a < b) {
+        return a;
+    } else {
+        return b;
+    }
+}
+console.log(min(8, 3)); // 3
+
+//функция max(a, b),возвращает большее из чисел
+function max(a, y) {
+    if (a > y) {
+        return a;
+    } else {
+        return y;
+    }
+}
+console.log(max(4, 2)); // 4
+
+//функция min(a, b) с тернарным оператором
+function min1(a, b) {
+    return a < b ? a : b;
+}
+console.log(min1(4, 3)); // 3
+
+//функция max(a, b) с тернарным оператором
+function max1(a, y) {
+    return a > y ? a : y;
+}
+console.log(max1(2, 8)); // 8
+
+//функция, которая заменяет все 0 на 'zero'
+let array3 = [ ];
+for (let i = 0; i < 10; i++) {
+    array3[i] = Math.floor(Math.random() * 101);
+}
+console.log(array3);
+
+for (let i = 0; i < array3.length; i++) {
+    let b = String(array3[i]);
+    if (b.endsWith('0')) {
+        b = b.replaceAll('0', 'zero');
+        array3[i] = b;
+    }
+}
+console.log(array3);
