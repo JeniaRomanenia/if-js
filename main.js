@@ -42,9 +42,8 @@ function Palindrome(word) {
     let Reverse = word.split('').reverse().join('');
     if (Reverse === word) {
         return true;
-    } else {
-        return false;
     }
+        return false;
 }
 console.log(Palindrome('шалаш'));
 
@@ -52,9 +51,8 @@ console.log(Palindrome('шалаш'));
 function min(a, b) {
     if (a < b) {
         return a;
-    } else {
-        return b;
     }
+        return b;
 }
 console.log(min(8, 3)); // 3
 
@@ -62,9 +60,8 @@ console.log(min(8, 3)); // 3
 function max(a, y) {
     if (a > y) {
         return a;
-    } else {
-        return y;
     }
+        return y;
 }
 console.log(max(4, 2)); // 4
 
@@ -87,11 +84,14 @@ for (let i = 0; i < 10; i++) {
 }
 console.log(array3);
 
-for (let i = 0; i < array3.length; i++) {
-    let b = String(array3[i]);
-    if (b.endsWith('0')) {
-        b = b.replaceAll('0', 'zero');
-        array3[i] = b;
+function myFunc(array) {
+    for (let i = 0; i < array.length; i++) {
+        let b = String(array[i]);
+        if (b.endsWith('0')) {
+            b = b.replaceAll('0', 'zero');
+            array[i] = b;
+        }
     }
+    return array;
 }
-console.log(array3);
+console.log(myFunc(array3));
