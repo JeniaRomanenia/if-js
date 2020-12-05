@@ -61,7 +61,7 @@ function colorText (){
     return function (){
         this.style.color = colors[j];
         j++;
-        if (j == colors.length){
+        if (j === colors.length){
             j = 0;
         }
     }
