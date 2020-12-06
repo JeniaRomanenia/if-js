@@ -37,6 +37,65 @@ for (let i = 0; i <array2.length; i++) {
     }
 }
 
+//функция palindrome
+function Palindrome(word) {
+    let Reverse = word.split('').reverse().join('');
+    if (Reverse === word) {
+        return true;
+    }
+        return false;
+}
+console.log(Palindrome('шалаш'));
+
+//функция min(a, b),возвращает меньшее из чисел
+function min(a, b) {
+    if (a < b) {
+        return a;
+    }
+        return b;
+}
+console.log(min(8, 3)); // 3
+
+//функция max(a, b),возвращает большее из чисел
+function max(a, y) {
+    if (a > y) {
+        return a;
+    }
+        return y;
+}
+console.log(max(4, 2)); // 4
+
+//функция min(a, b) с тернарным оператором
+function min1(a, b) {
+    return a < b ? a : b;
+}
+console.log(min1(4, 3)); // 3
+
+//функция max(a, b) с тернарным оператором
+function max1(a, y) {
+    return a > y ? a : y;
+}
+console.log(max1(2, 8)); // 8
+
+//функция, которая заменяет все 0 на 'zero'
+let array3 = [ ];
+for (let i = 0; i < 10; i++) {
+    array3[i] = Math.floor(Math.random() * 101);
+}
+console.log(array3);
+
+function myFunc(array) {
+    for (let i = 0; i < array.length; i++) {
+        let b = String(array[i]);
+        if (b.endsWith('0')) {
+            b = b.replaceAll('0', 'zero');
+            array[i] = b;
+        }
+    }
+    return array;
+}
+console.log(myFunc(array3));
+
 // функция sum
 function sum(a = 0) {
     return function(b = 0) {
