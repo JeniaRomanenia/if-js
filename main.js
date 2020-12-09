@@ -94,6 +94,7 @@ function myFunc(array) {
     }
     return array;
 }
+
 console.log(myFunc(array3));
 
 // функция sum
@@ -122,3 +123,5 @@ const colorText = () => {
 text1El.addEventListener('click', colorText());
 text2El.addEventListener('click', colorText());
 text3El.addEventListener('click', colorText());
+
+
