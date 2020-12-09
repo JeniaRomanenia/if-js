@@ -111,17 +111,14 @@ const text3El = document.getElementById('text3');
 
 const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
+const colorText = () => {
+    let j = 0;
+    return (event) => {
+        event.target.style.color = colors[j];
+        j = j > 3 ? 0 : j + 1;
+        };
+    };
+
 text1El.addEventListener('click', colorText());
 text2El.addEventListener('click', colorText());
 text3El.addEventListener('click', colorText());
-
-function colorText (){
-    let j = 0;
-    return function (){
-        this.style.color = colors[j];
-        j++;
-        if (j === colors.length){
-            j = 0;
-        }
-    }
-}
