@@ -94,4 +94,34 @@ function myFunc(array) {
     }
     return array;
 }
+
 console.log(myFunc(array3));
+
+// функция sum
+function sum(a = 0) {
+    return function(b = 0) {
+        return a + b;
+    };
+}
+console.log(sum(5)(2));
+
+// Покрасьте абзацы по клику (событие click)
+const text1El = document.getElementById('text1');
+const text2El = document.getElementById('text2');
+const text3El = document.getElementById('text3');
+
+const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+
+const colorText = () => {
+    let j = 0;
+    return (event) => {
+        event.target.style.color = colors[j];
+        j = j > 3 ? 0 : j + 1;
+        };
+    };
+
+text1El.addEventListener('click', colorText());
+text2El.addEventListener('click', colorText());
+text3El.addEventListener('click', colorText());
+
+
