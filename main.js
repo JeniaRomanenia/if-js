@@ -189,12 +189,3 @@ const search = str => {
 console.log(search('berlin'));
 
 
-
-
-
-
-
-
-
-
-
