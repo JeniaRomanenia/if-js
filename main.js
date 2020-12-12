@@ -185,7 +185,7 @@ const search = str => {
         ).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`)
 };
 
-console.log(search('ber'));
+console.log(search('ger '));
 
 
 
