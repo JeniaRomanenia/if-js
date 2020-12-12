@@ -174,19 +174,20 @@ const data = [
     },
 ];
 
-const replaceStrForSearch = str => str.toLowerCase().replaceAll(' ', '');
 
 const search = str => {
-    const searchStr = replaceStrForSearch(str);
+    const searchStr = str.toLowerCase().replaceAll(' ', '');
 
     return data
-        .filter(object => (replaceStrForSearch(object.country.toLowerCase().replaceAll(' ', '')).includes(searchStr)
-        ||replaceStrForSearch(object.city.toLowerCase().replaceAll(' ', '')).includes(searchStr)
-            ||replaceStrForSearch(object.hotel.toLowerCase().replaceAll(' ', '')).includes(searchStr))
+        .filter(object => (object.country.toLowerCase().replaceAll(' ', '').includes(searchStr)
+            || object.city.toLowerCase().replaceAll(' ', '').includes(searchStr)
+            || object.hotel.toLowerCase().replaceAll(' ', '').includes(searchStr))
         ).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`)
 };
 
-console.log(search('berlin'));
+console.log(search('ber'));
+
+
 
 
 
