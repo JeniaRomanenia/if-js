@@ -190,12 +190,3 @@ console.log(search('ger '));
 
 
 
-
-
-
-
-
-
-
-
-
