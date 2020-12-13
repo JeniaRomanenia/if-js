@@ -40,10 +40,8 @@ for (let i = 0; i <array2.length; i++) {
 //функция palindrome
 function Palindrome(word) {
     let Reverse = word.split('').reverse().join('');
-    if (Reverse === word) {
-        return true;
-    }
-        return false;
+    return Reverse === word;
+
 }
 console.log(Palindrome('шалаш'));
 
@@ -174,15 +172,16 @@ const data = [
     },
 ];
 
+const replaceStrForSearch = str => str.toLowerCase().replaceAll(' ', '');
 
 const search = str => {
-    const searchStr = str.toLowerCase().replaceAll(' ', '');
+    const searchStr = replaceStrForSearch(str);
 
-    return data
-        .filter(object => (object.country.toLowerCase().replaceAll(' ', '').includes(searchStr)
-            || object.city.toLowerCase().replaceAll(' ', '').includes(searchStr)
-            || object.hotel.toLowerCase().replaceAll(' ', '').includes(searchStr))
-        ).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`)
+   return data
+        .filter(object => {
+            const string = `${object.country}, ${object.city}, ${object.hotel}`
+            return replaceStrForSearch(string).includes(searchStr);
+        }).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`)
 };
 
 console.log(search('ger '));
