@@ -190,9 +190,9 @@ console.log(search('ger '));
 
 // функция getCalendarMonth
 const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
-  if (dayOfWeek >= daysInWeek) {
-       throw new  Error('Invalid data'); //выбросит ошибку, если переданный день смещения больше, чем дней в недели.
-  }
+if (dayOfWeek >= daysInWeek)  {
+    throw new  Error('Invalid data');
+}
 
   const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
   const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));
@@ -204,11 +204,11 @@ const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
       if (result[subArrayIndex].length === daysInWeek) {
          if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
               break;
-           }
+         }
 
            subArrayIndex++;                       //индекс массива увеличивается на 1
            result[subArrayIndex] = [];             //создается новый массив
-        }
+         }
 
        currentDay++;
 
@@ -217,7 +217,7 @@ const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
        }
 
       result[subArrayIndex].push(currentDay);
-   }
+  }
 
     return result;
 };
