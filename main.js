@@ -31,7 +31,7 @@ for (let i = 0; i < array2.length; i++) {
 }
 
 // четные элементы
-for (let i = 0; i < array2.length; i++) {
+for (let i = 0; i <array2.length; i++) {
     if (array2[i] % 2 === 0) {
         console.log(array2[i]);
     }
@@ -43,7 +43,6 @@ function Palindrome(word) {
     return Reverse === word;
 
 }
-
 console.log(Palindrome('шалаш'));
 
 //функция min(a, b),возвращает меньшее из чисел
@@ -51,9 +50,8 @@ function min(a, b) {
     if (a < b) {
         return a;
     }
-    return b;
+        return b;
 }
-
 console.log(min(8, 3)); // 3
 
 //функция max(a, b),возвращает большее из чисел
@@ -61,27 +59,24 @@ function max(a, y) {
     if (a > y) {
         return a;
     }
-    return y;
+        return y;
 }
-
 console.log(max(4, 2)); // 4
 
 //функция min(a, b) с тернарным оператором
 function min1(a, b) {
     return a < b ? a : b;
 }
-
 console.log(min1(4, 3)); // 3
 
 //функция max(a, b) с тернарным оператором
 function max1(a, y) {
     return a > y ? a : y;
 }
-
 console.log(max1(2, 8)); // 8
 
 //функция, которая заменяет все 0 на 'zero'
-let array3 = [];
+let array3 = [ ];
 for (let i = 0; i < 10; i++) {
     array3[i] = Math.floor(Math.random() * 101);
 }
@@ -102,11 +97,10 @@ console.log(myFunc(array3));
 
 // функция sum
 function sum(a = 0) {
-    return function (b = 0) {
+    return function(b = 0) {
         return a + b;
     };
 }
-
 console.log(sum(5)(2));
 
 // Покрасьте абзацы по клику (событие click)
@@ -121,8 +115,8 @@ const colorText = () => {
     return (event) => {
         event.target.style.color = colors[j];
         j = j > 3 ? 0 : j + 1;
+        };
     };
-};
 
 text1El.addEventListener('click', colorText());
 text2El.addEventListener('click', colorText());
@@ -183,7 +177,7 @@ const replaceStrForSearch = str => str.toLowerCase().replaceAll(' ', '');
 const search = str => {
     const searchStr = replaceStrForSearch(str);
 
-    return data
+   return data
         .filter(object => {
             const string = `${object.country}${object.city}${object.hotel}`;
             return replaceStrForSearch(string).includes(searchStr);
@@ -193,36 +187,37 @@ const search = str => {
 console.log(search('ger '));
 
 
+
 // функция getCalendarMonth
 const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
-    if (dayOfWeek >= daysInWeek) {
-        throw new Error('Invalid data'); //выбросит ошибку, если переданный день смещения больше, чем дней в недели.
-    }
+   if (dayOfWeek >= daysInWeek) {
+       throw new  Error('Invalid data'); //выбросит ошибку, если переданный день смещения больше, чем дней в недели.
+  }
 
-    const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
-    const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));//кол-во иттераций
-    let currentDay = daysInMonth - dayOfWeek;
-    let subArrayIndex = 0;                           //индекс массива
-    const result = [[]];                             //задаем вложенный массив (наш месяц)
+  const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
+  const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));//кол-во иттераций
+   let currentDay = daysInMonth - dayOfWeek;
+  let subArrayIndex = 0;                           //индекс массива
+   const result = [[]];                           //задаем вложенный массив (наш месяц)
 
-    for (let i = 1; i <= iteration; i++) {
-        if (result[subArrayIndex].length === daysInWeek) {
-            if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
-                break;
-            }
+  for (let i = 1; i <= iteration; i++) {
+      if (result[subArrayIndex].length === daysInWeek) {
+         if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
+              break;
+           }
 
-            subArrayIndex++;                          //индекс массива увеличивается на 1
-            result[subArrayIndex] = [];               //создается новый массив
+           subArrayIndex++;                       //индекс массива увеличивается на 1
+           result[subArrayIndex] = [];             //создается новый массив
         }
 
-        currentDay++;
+       currentDay++;
 
-        if (currentDay > daysInMonth) {
-            currentDay = 1;
-        }
+       if (currentDay > daysInMonth) {
+           currentDay = 1;
+       }
 
-        result[subArrayIndex].push(currentDay);
-    }
+      result[subArrayIndex].push(currentDay);
+   }
 
     return result;
 };
