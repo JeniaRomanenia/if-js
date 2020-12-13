@@ -190,15 +190,15 @@ console.log(search('ger '));
 
 // функция getCalendarMonth
 const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
-   if (dayOfWeek >= daysInWeek) {
+  if (dayOfWeek >= daysInWeek) {
        throw new  Error('Invalid data'); //выбросит ошибку, если переданный день смещения больше, чем дней в недели.
   }
 
   const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
-  const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));//кол-во иттераций
-   let currentDay = daysInMonth - dayOfWeek;
+  const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));
+  let currentDay = daysInMonth - dayOfWeek;
   let subArrayIndex = 0;                           //индекс массива
-   const result = [[]];                           //задаем вложенный массив (наш месяц)
+  const result = [[]];                             //задаем вложенный массив (наш месяц)
 
   for (let i = 1; i <= iteration; i++) {
       if (result[subArrayIndex].length === daysInWeek) {
