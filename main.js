@@ -40,10 +40,8 @@ for (let i = 0; i <array2.length; i++) {
 //функция palindrome
 function Palindrome(word) {
     let Reverse = word.split('').reverse().join('');
-    if (Reverse === word) {
-        return true;
-    }
-        return false;
+    return Reverse === word;
+
 }
 console.log(Palindrome('шалаш'));
 
@@ -124,4 +122,107 @@ text1El.addEventListener('click', colorText());
 text2El.addEventListener('click', colorText());
 text3El.addEventListener('click', colorText());
 
+//преобразование формата даты: '2020-11-26' => '26.11.2020'
+const date = '2020-11-26';
+const dateFormat = (date2) => date2.split('-').reverse().join('.');
+
+console.log(dateFormat(date));
+
+//поиск объектов размещения:
+const data = [
+    {
+        country: 'Russia',
+        city: 'Saint Petersburg',
+        hotel: 'Hotel Leopold',
+    },
+    {
+        country: 'Spain',
+        city: 'Santa Cruz de Tenerife',
+        hotel: 'Apartment Sunshine',
+    },
+    {
+        country: 'Slowakia',
+        city: 'Vysokie Tatry',
+        hotel: 'Villa Kunerad',
+    },
+    {
+        country: 'Germany',
+        city: 'Berlin',
+        hotel: 'Hostel Friendship',
+    },
+    {
+        country: 'Indonesia',
+        city: 'Bali',
+        hotel: 'Ubud Bali Resort&SPA',
+    },
+    {
+        country: 'Netherlands',
+        city: 'Rotterdam',
+        hotel: 'King Kong Hostel',
+    },
+    {
+        country: 'Marocco',
+        city: 'Ourika',
+        hotel: 'Rokoko Hotel',
+    },
+    {
+        country: 'Germany',
+        city: 'Berlin',
+        hotel: 'Hotel Rehberge Berlin Mitte',
+    },
+];
+
+const replaceStrForSearch = str => str.toLowerCase().replaceAll(' ', '');
+
+const search = str => {
+    const searchStr = replaceStrForSearch(str);
+
+   return data
+        .filter(object => {
+            const string = `${object.country}${object.city}${object.hotel}`;
+            return replaceStrForSearch(string).includes(searchStr);
+        }).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`);
+};
+
+console.log(search('ger '));
+
+
+
+// функция getCalendarMonth
+const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
+   if (dayOfWeek >= daysInWeek) {
+       throw new  Error('Invalid data'); //выбросит ошибку, если переданный день смещения больше, чем дней в недели.
+  }
+
+  const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
+  const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));//кол-во иттераций
+   let currentDay = daysInMonth - dayOfWeek;
+  let subArrayIndex = 0;                           //индекс массива
+   const result = [[]];                           //задаем вложенный массив (наш месяц)
+
+  for (let i = 1; i <= iteration; i++) {
+      if (result[subArrayIndex].length === daysInWeek) {
+         if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
+              break;
+           }
+
+           subArrayIndex++;                       //индекс массива увеличивается на 1
+           result[subArrayIndex] = [];             //создается новый массив
+        }
+
+       currentDay++;
+
+       if (currentDay > daysInMonth) {
+           currentDay = 1;
+       }
+
+      result[subArrayIndex].push(currentDay);
+   }
+
+    return result;
+};
+
+const calendarMonth = getCalendarMonth(30, 7, 2);
+
+console.log(calendarMonth);
 
