@@ -188,6 +188,7 @@ console.log(search('ger '));
 
 
 
+
 // функция getCalendarMonth
 const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
    if (dayOfWeek >= daysInWeek) {
@@ -225,4 +226,5 @@ const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
 const calendarMonth = getCalendarMonth(30, 7, 2);
 
 console.log(calendarMonth);
+
 
