@@ -179,9 +179,9 @@ const search = str => {
 
    return data
         .filter(object => {
-            const string = `${object.country}, ${object.city}, ${object.hotel}`
+            const string = `${object.country}${object.city}${object.hotel}`;
             return replaceStrForSearch(string).includes(searchStr);
-        }).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`)
+        }).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`);
 };
 
 console.log(search('ger '));
