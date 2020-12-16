@@ -205,20 +205,15 @@ if (dayOfWeek >= daysInWeek)  {
          if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
               break;
          }
-
            subArrayIndex++;                       //индекс массива увеличивается на 1
            result[subArrayIndex] = [];             //создается новый массив
-         }
-
-       currentDay++;
-
-       if (currentDay > daysInMonth) {
+      }
+      currentDay++;
+      if (currentDay > daysInMonth) {
            currentDay = 1;
-       }
-
+      }
       result[subArrayIndex].push(currentDay);
   }
-
     return result;
 };
 
