@@ -188,4 +188,36 @@ console.log(search('ger '));
 
 
 
+// функция getCalendarMonth
+const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
+if (dayOfWeek >= daysInWeek)  {
+    throw new  Error('Invalid data');
+}
+
+  const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
+  const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));
+  let currentDay = daysInMonth - dayOfWeek;
+  let subArrayIndex = 0;                           //индекс массива
+  const result = [[]];                             //задаем вложенный массив (наш месяц)
+
+  for (let i = 1; i <= iteration; i++) {
+      if (result[subArrayIndex].length === daysInWeek) {
+         if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
+              break;
+         }
+           subArrayIndex++;                       //индекс массива увеличивается на 1
+           result[subArrayIndex] = [];             //создается новый массив
+      }
+      currentDay++;
+      if (currentDay > daysInMonth) {
+           currentDay = 1;
+      }
+      result[subArrayIndex].push(currentDay);
+  }
+    return result;
+};
+
+const calendarMonth = getCalendarMonth(30, 7, 2);
+
+console.log(calendarMonth);
 
