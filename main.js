@@ -113,7 +113,7 @@ const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 const colorText = () => {
     let j = 0;
     return (event) => {
-        event.target.style.color = colors[j];
+       event.target.style.color = colors[j];
         j = j > 3 ? 0 : j + 1;
         };
     };
@@ -190,34 +190,103 @@ console.log(search('ger '));
 
 // функция getCalendarMonth
 const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
-if (dayOfWeek >= daysInWeek)  {
-    throw new  Error('Invalid data');
-}
+    if (dayOfWeek >= daysInWeek)  {
+        throw new  Error('Invalid data');
+    }
 
-  const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
-  const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));
-  let currentDay = daysInMonth - dayOfWeek;
-  let subArrayIndex = 0;                           //индекс массива
-  const result = [[]];                             //задаем вложенный массив (наш месяц)
+    const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
+    const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));
+    let currentDay = daysInMonth - dayOfWeek;
+    let subArrayIndex = 0;                           //индекс массива
+    const result = [[]];                             //задаем вложенный массив (наш месяц)
 
-  for (let i = 1; i <= iteration; i++) {
-      if (result[subArrayIndex].length === daysInWeek) {
-         if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
-              break;
-         }
-           subArrayIndex++;                       //индекс массива увеличивается на 1
-           result[subArrayIndex] = [];             //создается новый массив
-      }
-      currentDay++;
-      if (currentDay > daysInMonth) {
-           currentDay = 1;
-      }
-      result[subArrayIndex].push(currentDay);
-  }
+    for (let i = 1; i <= iteration; i++) {
+        if (result[subArrayIndex].length === daysInWeek) {
+            if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
+                break;
+            }
+            subArrayIndex++;                       //индекс массива увеличивается на 1
+            result[subArrayIndex] = [];             //создается новый массив
+        }
+        currentDay++;
+        if (currentDay > daysInMonth) {
+            currentDay = 1;
+        }
+        result[subArrayIndex].push(currentDay);
+    }
     return result;
 };
 
 const calendarMonth = getCalendarMonth(30, 7, 2);
 
 console.log(calendarMonth);
+
+// Работа с классами
+
+const studentsData = [
+    {
+        firstName: 'Василий',
+        lastName: 'Петров',
+        admissionYear: 2019,
+        courseName: 'Java',
+    },
+    {
+        firstName: 'Иван',
+        lastName: 'Иванов',
+        admissionYear: 2018,
+        courseName: 'JavaScript',
+    },
+    {
+        firstName: 'Александр',
+        lastName: 'Федоров',
+        admissionYear: 2017,
+        courseName: 'Python',
+    },
+    {
+        firstName: 'Николай',
+        lastName: 'Петров',
+        admissionYear: 2019,
+        courseName: 'Android',
+    }
+];
+
+class User {
+    constructor(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+    get fullName() {
+        return `${this.firstName} ${this.lastName}`;
+    }
+}
+
+class Student extends User {
+    constructor(firstName, lastName, admissionYear, courseName) {
+        super (firstName, lastName);
+        this.admissionYear = admissionYear;
+        this.courseName = courseName;
+    }
+    get course() {
+        return new Date().getFullYear()-this.admissionYear;
+ }
+}
+
+class Students {
+    constructor(students) {
+        this.students = students.map (({
+            firstName, lastName, admissionYear, courseName,
+        }) => new Student (firstName, lastName, admissionYear, courseName));
+    }
+    getInfo(){
+        this.students.sort((prev, next) => prev.course - next.course);
+        const arr = [];
+        this.students.forEach((item) => {
+            arr.push(`${item.fullName} - ${item.courseName}, ${item.course} курс`);
+        });
+        return arr;
+    }
+}
+
+const students = new Students(studentsData);
+console.log(students.getInfo());
 
