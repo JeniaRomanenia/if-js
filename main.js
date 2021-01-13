@@ -104,23 +104,23 @@ function sum(a = 0) {
 console.log(sum(5)(2));
 
 // Покрасьте абзацы по клику (событие click)
-const text1El = document.getElementById('text1');
-const text2El = document.getElementById('text2');
-const text3El = document.getElementById('text3');
+//const text1El = document.getElementById('text1');
+//const text2El = document.getElementById('text2');
+//const text3El = document.getElementById('text3');
 
-const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+//const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
-const colorText = () => {
-    let j = 0;
-    return (event) => {
-       event.target.style.color = colors[j];
-        j = j > 3 ? 0 : j + 1;
-        };
-    };
+//const colorText = () => {
+//    let j = 0;
+//    return (event) => {
+//       event.target.style.color = colors[j];
+//        j = j > 3 ? 0 : j + 1;
+//        };
+//    };
 
-text1El.addEventListener('click', colorText());
-text2El.addEventListener('click', colorText());
-text3El.addEventListener('click', colorText());
+//text1El.addEventListener('click', colorText());
+//text2El.addEventListener('click', colorText());
+//text3El.addEventListener('click', colorText());
 
 //преобразование формата даты: '2020-11-26' => '26.11.2020'
 const date = '2020-11-26';
@@ -287,6 +287,8 @@ class Students {
     }
 }
 
+//Отображение контентв блока "Homes guests loves" из массива
+
 const students = new Students(studentsData);
 console.log(students.getInfo());
 
@@ -330,4 +332,32 @@ data.forEach(item => {
  homesEl.appendChild(el);
 });
 
+//Покрасить абзацы по клику (еще не работает ((()
+const text1El = document.getElementById('text1');
+const text2El = document.getElementById('text2');
+const text3El = document.getElementById('text3');
 
+const colors = {
+    color: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+    [Symbol.iterator]() {
+        return this;
+    },
+    next(colorText) {
+        return {
+            done: false,
+            value: this.color[colorText]
+        };
+    },
+};
+
+const colorText = () => {
+    let j = 0;
+    return (event) => {
+        event.target.style.color = colors.next(j).
+        j = j > 3 ? 0 : j + 1;
+    };
+};
+
+text1El.addEventListener('click', colorText());
+text2El.addEventListener('click', colorText());
+text3El.addEventListener('click', colorText());
