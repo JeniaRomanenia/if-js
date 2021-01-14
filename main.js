@@ -104,23 +104,23 @@ function sum(a = 0) {
 console.log(sum(5)(2));
 
 // Покрасьте абзацы по клику (событие click)
-const text1El = document.getElementById('text1');
-const text2El = document.getElementById('text2');
-const text3El = document.getElementById('text3');
+//const text1El = document.getElementById('text1');
+//const text2El = document.getElementById('text2');
+//const text3El = document.getElementById('text3');
 
-const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
+//const colors = ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'];
 
-const colorText = () => {
-    let j = 0;
-    return (event) => {
-       event.target.style.color = colors[j];
-        j = j > 3 ? 0 : j + 1;
-        };
-    };
+//const colorText = () => {
+//    let j = 0;
+//    return (event) => {
+//       event.target.style.color = colors[j];
+//        j = j > 3 ? 0 : j + 1;
+//        };
+//    };
 
-text1El.addEventListener('click', colorText());
-text2El.addEventListener('click', colorText());
-text3El.addEventListener('click', colorText());
+//text1El.addEventListener('click', colorText());
+//text2El.addEventListener('click', colorText());
+//text3El.addEventListener('click', colorText());
 
 //преобразование формата даты: '2020-11-26' => '26.11.2020'
 const date = '2020-11-26';
@@ -129,62 +129,62 @@ const dateFormat = (date2) => date2.split('-').reverse().join('.');
 console.log(dateFormat(date));
 
 //поиск объектов размещения:
-const data = [
-    {
-        country: 'Russia',
-        city: 'Saint Petersburg',
-        hotel: 'Hotel Leopold',
-    },
-    {
-        country: 'Spain',
-        city: 'Santa Cruz de Tenerife',
-        hotel: 'Apartment Sunshine',
-    },
-    {
-        country: 'Slowakia',
-        city: 'Vysokie Tatry',
-        hotel: 'Villa Kunerad',
-    },
-    {
-        country: 'Germany',
-        city: 'Berlin',
-        hotel: 'Hostel Friendship',
-    },
-    {
-        country: 'Indonesia',
-        city: 'Bali',
-        hotel: 'Ubud Bali Resort&SPA',
-    },
-    {
-        country: 'Netherlands',
-        city: 'Rotterdam',
-        hotel: 'King Kong Hostel',
-    },
-    {
-        country: 'Marocco',
-        city: 'Ourika',
-        hotel: 'Rokoko Hotel',
-    },
-    {
-        country: 'Germany',
-        city: 'Berlin',
-        hotel: 'Hotel Rehberge Berlin Mitte',
-    },
-];
+//const data = [
+//    {
+//        country: 'Russia',
+//        city: 'Saint Petersburg',
+//        hotel: 'Hotel Leopold',
+//    },
+//    {
+//        country: 'Spain',
+//        city: 'Santa Cruz de Tenerife',
+//        hotel: 'Apartment Sunshine',
+//    },
+//    {
+//        country: 'Slowakia',
+//        city: 'Vysokie Tatry',
+//        hotel: 'Villa Kunerad',
+//    },
+//    {
+//        country: 'Germany',
+//        city: 'Berlin',
+//        hotel: 'Hostel Friendship',
+//    },
+//    {
+//        country: 'Indonesia',
+//        city: 'Bali',
+//        hotel: 'Ubud Bali Resort&SPA',
+//    },
+//    {
+//        country: 'Netherlands',
+//        city: 'Rotterdam',
+//        hotel: 'King Kong Hostel',
+//    },
+//    {
+//        country: 'Marocco',
+//        city: 'Ourika',
+//        hotel: 'Rokoko Hotel',
+//    },
+//    {
+//        country: 'Germany',
+//        city: 'Berlin',
+//        hotel: 'Hotel Rehberge Berlin Mitte',
+//    },
+//];
 
-const replaceStrForSearch = str => str.toLowerCase().replaceAll(' ', '');
+//const replaceStrForSearch = str => str.toLowerCase().replaceAll(' ', '');
 
-const search = str => {
-    const searchStr = replaceStrForSearch(str);
+//const search = str => {
+//    const searchStr = replaceStrForSearch(str);
 
-   return data
-        .filter(object => {
-            const string = `${object.country}${object.city}${object.hotel}`;
-            return replaceStrForSearch(string).includes(searchStr);
-        }).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`);
-};
+//   return data
+//        .filter(object => {
+//            const string = `${object.country}${object.city}${object.hotel}`;
+//            return replaceStrForSearch(string).includes(searchStr);
+//        }).map(object => `Страна: ${object.country} Город: ${object.city} Отель: ${object.hotel}`);
+//};
 
-console.log(search('ger '));
+//console.log(search('ger '));
 
 
 
@@ -287,6 +287,77 @@ class Students {
     }
 }
 
+//Отображение контентв блока "Homes guests loves" из массива
+
 const students = new Students(studentsData);
 console.log(students.getInfo());
 
+const data = [
+    {
+        name: 'Hotel Leopold',
+        city: 'Saint Petersburg',
+        country: 'Russia',
+        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/hotel-leopold_mflelk.jpg',
+    },
+    {
+        name: 'Apartment Sunshine',
+        city: 'Santa  Cruz de Tenerife',
+        country: 'Spain',
+        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/apartment-sunshine_vhdlel.jpg',
+    },
+    {
+        name: 'Villa Kunerad',
+        city: 'Vysokie Tatry',
+        country: 'Slowakia',
+        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/villa-kunerad_gdbqgv.jpg',
+    },
+    {
+        name: 'Hostel Friendship',
+        city: 'Berlin',
+        country: 'Germany',
+        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/hostel-friendship_aw6tn7.jpg',
+    }
+];
+
+const homesEl = document.getElementById('container');
+
+data.forEach(item => {
+    const el = document.createElement('div');
+    el.classList.add('home', 'col-3', 'col-xs-3')
+    el.innerHTML = `
+        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
+        <a class="homes-link" href="">${item.name}</a>
+        <p class="homes-text">${item.city}, ${item.country}</p>
+    `;
+ homesEl.appendChild(el);
+});
+
+//Покрасить абзацы по клику (еще не работает ((()
+const text1El = document.getElementById('text1');
+const text2El = document.getElementById('text2');
+const text3El = document.getElementById('text3');
+
+const colors = {
+    color: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+    [Symbol.iterator]() {
+        return this;
+    },
+    next(colorText) {
+        return {
+            done: false,
+            value: this.color[colorText]
+        };
+    },
+};
+
+const colorText = () => {
+    let j = 0;
+    return (event) => {
+        event.target.style.color = colors.next(j).
+        j = j > 3 ? 0 : j + 1;
+    };
+};
+
+text1El.addEventListener('click', colorText());
+text2El.addEventListener('click', colorText());
+text3El.addEventListener('click', colorText());
