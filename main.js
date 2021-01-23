@@ -345,7 +345,7 @@ const colors = {
     next(colorText) {
         return {
             done: false,
-            value: this.color[colorText]
+            value: this.color[colorText],
         };
     },
 };
@@ -353,7 +353,7 @@ const colors = {
 const colorText = () => {
     let j = 0;
     return (event) => {
-        event.target.style.color = colors.next(j).
+        event.target.style.color = colors.next(j).value;
         j = j > 3 ? 0 : j + 1;
     };
 };
