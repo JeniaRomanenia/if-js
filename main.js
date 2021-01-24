@@ -123,10 +123,10 @@ console.log(sum(5)(2));
 //text3El.addEventListener('click', colorText());
 
 //преобразование формата даты: '2020-11-26' => '26.11.2020'
-const date = '2020-11-26';
-const dateFormat = (date2) => date2.split('-').reverse().join('.');
+//const date = '2020-11-26';
+//const dateFormat = (date2) => date2.split('-').reverse().join('.');
 
-console.log(dateFormat(date));
+//console.log(dateFormat(date));
 
 //поиск объектов размещения:
 //const data = [
@@ -189,37 +189,100 @@ console.log(dateFormat(date));
 
 
 // функция getCalendarMonth
-const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
-    if (dayOfWeek >= daysInWeek)  {
-        throw new  Error('Invalid data');
+
+//const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
+//    if (dayOfWeek >= daysInWeek)  {
+//        throw new  Error('Invalid data');
+//    }
+
+//    const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
+//    const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));
+//    let currentDay = daysInMonth - dayOfWeek;
+//    let subArrayIndex = 0;                           //индекс массива
+//    const result = [[]];                             //задаем вложенный массив (наш месяц)
+
+//    for (let i = 1; i <= iteration; i++) {
+ //       if (result[subArrayIndex].length === daysInWeek) {
+ //           if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
+//                break;
+//            }
+//            subArrayIndex++;                       //индекс массива увеличивается на 1
+//            result[subArrayIndex] = [];             //создается новый массив
+//        }
+//        currentDay++;
+//        if (currentDay > daysInMonth) {
+//            currentDay = 1;
+//        }
+//        result[subArrayIndex].push(currentDay);
+//    }
+//    return result;
+//};
+
+//const calendarMonth = getCalendarMonth(30, 7, 2);
+
+//'console.log(calendarMonth);
+
+
+const date = new Date();
+
+const renderCalendar = () => {
+    date.setDate(1);
+
+    const monthDays = document.querySelector(".days");
+
+    const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
+    const prevLastDay = new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        0
+    ).getDate();
+
+    const firstDayIndex = date.getDay();
+
+    const lastDayIndex = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDay();
+
+    const nextDays = 7 - lastDayIndex - 1;
+
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
+        "November", "December"];
+
+    document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+
+    let days = "";
+
+    for (let x = firstDayIndex; x > 0; x--) {
+        days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
     }
 
-    const daysWithoutTail = daysInMonth + dayOfWeek; //сумма дней месяца и смещение первого дня месяца.
-    const iteration = daysWithoutTail + (daysInWeek - (daysWithoutTail % daysInWeek));
-    let currentDay = daysInMonth - dayOfWeek;
-    let subArrayIndex = 0;                           //индекс массива
-    const result = [[]];                             //задаем вложенный массив (наш месяц)
-
-    for (let i = 1; i <= iteration; i++) {
-        if (result[subArrayIndex].length === daysInWeek) {
-            if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
-                break;
-            }
-            subArrayIndex++;                       //индекс массива увеличивается на 1
-            result[subArrayIndex] = [];             //создается новый массив
+    for (let i = 1; i <= lastDay; i++) {
+        if (
+            i === new Date().getDate() &&
+            date.getMonth() === new Date().getMonth()
+        ) {
+            days += `<div class="today">${i}</div>`;
+        } else {
+            days += `<div>${i}</div>`;
         }
-        currentDay++;
-        if (currentDay > daysInMonth) {
-            currentDay = 1;
-        }
-        result[subArrayIndex].push(currentDay);
     }
-    return result;
+
+    for (let j = 1; j <= nextDays; j++) {
+        days += `<div class="next-date">${j}</div>`;
+        monthDays.innerHTML = days;
+    }
 };
 
-const calendarMonth = getCalendarMonth(30, 7, 2);
+document.querySelector(".prev").addEventListener("click", () => {
+    date.setMonth(date.getMonth() - 1);
+    renderCalendar();
+});
 
-console.log(calendarMonth);
+document.querySelector(".next").addEventListener("click", () => {
+    date.setMonth(date.getMonth() + 1);
+    renderCalendar();
+});
+
+renderCalendar();
 
 // Работа с классами
 

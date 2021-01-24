@@ -1,3 +1,4 @@
+@import url('./fonts.css');
 
 * {
   padding: 0;
@@ -85,7 +86,7 @@
 .top-section {
   min-height: 100vh;
   background-color: var(--gray200);
-/*  background-image: url(../images/castelmezzano.png);*/
+  background-image: url(../images/castelmezzano.png);
   background-repeat: no-repeat;
   background-position: center top;
 }
@@ -236,6 +237,81 @@ input, textarea {
   border-style: solid;
   padding: 16px 57px;
 }
+
+/*calendar*/
+
+.calendarAll {
+  background-color: var(--white-color);
+  border-radius: 8px;
+  position: absolute;
+  display: flex;
+  top: 72px;
+  left: 0;
+}
+
+.calendar {
+  text-align: center;
+  width: 290px;
+  padding: 12px 22px 18px;
+}
+
+.month i {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.month h1 {
+  font-weight: 500;
+  font-size: 18px;
+  position: relative;
+}
+
+.weekdays {
+  display: flex;
+  width: 280px;
+  margin-top: 10px;
+}
+
+.weekdays div {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.days {
+  width: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.2rem;
+}
+
+.days div {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.days div:hover:not(.today) {
+  background-color: var(--secondary-text-color);
+}
+
+.prev-date,
+.next-date {
+  opacity: 0.5;
+}
+
+.today {
+  color: var(--primary-color);
+}
+
 
 .apps {
   text-align: center;
