@@ -433,11 +433,9 @@ const homesEl = document.getElementById('homes');
     const data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
         .then((response) => response.json())
         .then((data1) => data1)
-        .catch((err) => {
-            console.log('Feth Error :-S', err);
-        });
+        .catch((err) => console.log(err));
     if (!data) {
-        console.log('Array dataHomes not found')
+        console.log('error')
     } else {
         data.forEach(item => {
             const el = document.createElement('div');
