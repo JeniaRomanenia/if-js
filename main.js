@@ -350,52 +350,52 @@ class Students {
     }
 }
 
-//Отображение контентв блока "Homes guests loves" из массива
-
 const students = new Students(studentsData);
 console.log(students.getInfo());
 
-const data = [
-    {
-        name: 'Hotel Leopold',
-        city: 'Saint Petersburg',
-        country: 'Russia',
-        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/hotel-leopold_mflelk.jpg',
-    },
-    {
-        name: 'Apartment Sunshine',
-        city: 'Santa  Cruz de Tenerife',
-        country: 'Spain',
-        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/apartment-sunshine_vhdlel.jpg',
-    },
-    {
-        name: 'Villa Kunerad',
-        city: 'Vysokie Tatry',
-        country: 'Slowakia',
-        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/villa-kunerad_gdbqgv.jpg',
-    },
-    {
-        name: 'Hostel Friendship',
-        city: 'Berlin',
-        country: 'Germany',
-        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/hostel-friendship_aw6tn7.jpg',
-    }
-];
 
-const homesEl = document.getElementById('container');
+//Отображение контентв блока "Homes guests loves" из массива
+//const data = [
+//    {
+//        name: 'Hotel Leopold',
+//        city: 'Saint Petersburg',
+//        country: 'Russia',
+//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/hotel-leopold_mflelk.jpg',
+//    },
+//    {
+//        name: 'Apartment Sunshine',
+//        city: 'Santa  Cruz de Tenerife',
+//        country: 'Spain',
+//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/apartment-sunshine_vhdlel.jpg',
+//    },
+//    {
+//        name: 'Villa Kunerad',
+//        city: 'Vysokie Tatry',
+//        country: 'Slowakia',
+//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/villa-kunerad_gdbqgv.jpg',
+//    },
+//    {
+//        name: 'Hostel Friendship',
+//        city: 'Berlin',
+//        country: 'Germany',
+//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/hostel-friendship_aw6tn7.jpg',
+//    }
+//];
 
-data.forEach(item => {
-    const el = document.createElement('div');
-    el.classList.add('home', 'col-3', 'col-xs-3')
-    el.innerHTML = `
-        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
-        <a class="homes-link" href="">${item.name}</a>
-        <p class="homes-text">${item.city}, ${item.country}</p>
-    `;
- homesEl.appendChild(el);
-});
+//const homesEl = document.getElementById('container');
 
-//Покрасить абзацы по клику (еще не работает ((()
+//data.forEach(item => {
+//    const el = document.createElement('div');
+//    el.classList.add('home', 'col-3', 'col-xs-3')
+//    el.innerHTML = `
+//        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
+//        <a class="homes-link" href="">${item.name}</a>
+//        <p class="homes-text">${item.city}, ${item.country}</p>
+//    `;
+// homesEl.appendChild(el);
+//});
+
+//Покрасить абзацы по клику
 const text1El = document.getElementById('text1');
 const text2El = document.getElementById('text2');
 const text3El = document.getElementById('text3');
@@ -424,3 +424,29 @@ const colorText = () => {
 text1El.addEventListener('click', colorText());
 text2El.addEventListener('click', colorText());
 text3El.addEventListener('click', colorText());
+
+//lesson-12 отображение  блока "Homes guests loves" на основе данных, полученных с помощью `fetch` по url
+
+const homesEl = document.getElementById('homes');
+
+(async () => {
+    const data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+        .then((response) => response.json())
+        .then((data1) => data1)
+        .catch((err) => console.log(err));
+    if (!data) {
+        console.log('error')
+    } else {
+        data.forEach(item => {
+            const el = document.createElement('div');
+            el.classList.add('home', 'col-3', 'col-xs-3');
+            el.innerHTML = `
+        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
+        <a class="homes-link" href="">${item.name}</a>
+        <p class="homes-text">${item.city}, ${item.country}</p>
+    `;
+            homesEl.appendChild(el);
+    });
+    }
+})();
+
