@@ -437,7 +437,7 @@ const homesEl = document.getElementById('homes');
     if (!data) {
         console.log('error')
     } else {
-        data.forEach((item, index) => {
+        data.forEach(item => {
             const el = document.createElement('div');
             el.classList.add('home', 'col-3', 'col-xs-3');
             el.innerHTML = `
