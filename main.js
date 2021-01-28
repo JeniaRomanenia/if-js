@@ -437,7 +437,7 @@ const homesEl = document.getElementById('homes');
     if (!data) {
         console.log('error')
     } else {
-        data.forEach(item => {
+        data.forEach((item, index) => {
             const el = document.createElement('div');
             el.classList.add('home', 'col-3', 'col-xs-3');
             el.innerHTML = `
@@ -446,6 +446,9 @@ const homesEl = document.getElementById('homes');
         <p class="homes-text">${item.city}, ${item.country}</p>
     `;
             homesEl.appendChild(el);
+            if (index > 3) {
+                el.classList.add('homes-displaynone');
+            }
     });
     }
 })();

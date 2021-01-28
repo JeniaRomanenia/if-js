@@ -419,6 +419,10 @@ input, textarea {
   fill: var(--primary-color);
 }
 
+.homes-displaynone {
+  display: none;
+}
+
 .destinations-tabs {
   align-items: center;
   background-color: var(--stroke-color);
