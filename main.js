@@ -427,13 +427,47 @@ text3El.addEventListener('click', colorText());
 
 //lesson-12 отображение  блока "Homes guests loves" на основе данных, полученных с помощью `fetch` по url
 
+//const homesEl = document.getElementById('homes');
+
+//(async () => {
+//    const data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+//        .then((response) => response.json())
+//        .then((data1) => data1)
+//        .catch((err) => console.log(err));
+//    if (!data) {
+//        console.log('error')
+//    } else {
+//        data.forEach((item, index) => {
+//            const el = document.createElement('div');
+//            el.classList.add('home', 'col-3', 'col-xs-3');
+//            el.innerHTML = `
+//        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
+//        <a class="homes-link" href="">${item.name}</a>
+//        <p class="homes-text">${item.city}, ${item.country}</p>
+//    `;
+//            homesEl.appendChild(el);
+//            if (index > 3) {
+//                el.classList.add('homes-displaynone');
+//            }
+//    });
+//    }
+//})();
+
+//lesson-13 сократить количество запросов к серверу.
+
 const homesEl = document.getElementById('homes');
 
 (async () => {
-    const data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+    let data;
+    if (sessionStorage.getItem('homes') == null) {
+      data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
         .then((response) => response.json())
         .then((data1) => data1)
-        .catch((err) => console.log(err));
+        .catch((err) => {console.log(err)});
+      sessionStorage.setItem('homes', JSON.stringify(data));
+} else {
+    data = JSON.parse(sessionStorage.getItem('homes'));
+}
     if (!data) {
         console.log('error')
     } else {
@@ -449,7 +483,6 @@ const homesEl = document.getElementById('homes');
             if (index > 3) {
                 el.classList.add('homes-displaynone');
             }
-    });
+        });
     }
 })();
-
