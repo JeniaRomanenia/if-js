@@ -453,7 +453,7 @@ text3El.addEventListener('click', colorText());
 //    }
 //})();
 
-//lesson-13 сократить количество запросов к серверу.
+//lesson-13 Reduce the number of requests to the server.
 
 const homesEl = document.getElementById('homes');
 
@@ -486,3 +486,31 @@ const homesEl = document.getElementById('homes');
         });
     }
 })();
+
+//lesson-14 The form that will submit the file to the url https://fe-student-api.herokuapp.com/api/file.
+
+const formEl = document.getElementById('form');
+
+formEl.addEventListener('submit', async  event => {
+    event.preventDefault();
+
+
+    const res = await  fetch('https://fe-student-api.herokuapp.com/api/file', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'multipart/form-data',
+        },
+        body: new FormData(formEl),
+    },
+        )
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        })
+        .then(result => result)
+        .catch(error => console.log(error.message));
+
+        console.log(res);
+});
