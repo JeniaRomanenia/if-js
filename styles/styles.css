@@ -168,63 +168,74 @@ a span {
   font-size: 50px;
   line-height: 59px;
   color: var(--white-color);
-  margin-bottom: 100px;
+  margin-bottom: 153px;
 }
 
-form {
-  background: transparent;
-  border: none;
-}
-
-.inputs {
-  display: inline-flex;
+.forms {
+  display: flex;
   background-color: var(--white-color);
   border-radius: 8px;
-  border-left: 3px solid var(--stroke-color);
+  margin-bottom: 120px;
 }
 
-.labels {
-  margin-bottom: 24px;
-  padding-left: 24px;
-  font-size: 18px;
-  color: var(--white-color);
-}
-
-label {
-  margin-right: 220px;
-}
-
-.input_city {
+.form-city {
+  position: relative;
   width: 465px;
-  padding-left: 24px;
+}
+
+.input-form-city {
+  width: 100%;
+  height: 64px;
+  padding-left: 25px;
+  border-radius: 4px;
   border: none;
-  background: transparent;
-}
-
-.input_data {
-  width: 260px;
-  border-radius: 8px;
-  border-color: var(--secondary);
-  border-width: 3px;
-  border-style: solid;
-  text-align: center;
-  background: transparent;
-}
-
-.input_room {
-  width: 310px;
-  text-align: center;
-  border: none;
-  background: transparent;
-}
-
-input, textarea {
   font-size: 18px;
-  line-height: 21px;
-  color: var(--primary-text-color);
 }
 
-.button-form {
+.label-form-city {
+  left: 5%;
+  top: -70%;
+  color: var(--white-color);
+  position: absolute;
+  font-size: 18px;
+}
+
+.form-check {
+  display: flex;
+  position: relative;
+  border: 3px solid var(--secondary);
+  border-radius: 8px;
+  width: 21%;
+}
+
+.input-check {
+  width: 100%;
+  height: 28px;
+  border-radius: 4px;
+  border: none;
+  padding: 30px 24px;
+}
+
+.label-check {
+  left: 28px;
+  top: -46px;
+  position: absolute;
+  color: var(--white-color);
+  font-size: 18px;
+}
+
+.form-room .input-room {
+  display: flex;
+  background-color: var(--white-color);
+  position: relative;
+  border-radius: 4px;
+  width: 320px;
+  text-align: center;
+  border: none;
+  padding: 23px 28px;
+}
+
+.form-button {
   width: 190px;
   background: var(--primary-color);
   color: #FFFFFF;
@@ -238,6 +249,12 @@ input, textarea {
   padding: 16px 57px;
 }
 
+input, textarea {
+  font-size: 18px;
+  line-height: 21px;
+  color: var(--primary-text-color);
+}
+
 /*calendar*/
 
 .calendarAll {
@@ -245,8 +262,8 @@ input, textarea {
   border-radius: 8px;
   position: absolute;
   display: flex;
-  top: 72px;
-  left: 0;
+  top: 636px;;
+  left: 692px;
 }
 
 .calendar {
@@ -260,16 +277,18 @@ input, textarea {
   cursor: pointer;
 }
 
-.month h1 {
+.date {
   font-weight: 500;
   font-size: 18px;
   position: relative;
+  cursor: default;
 }
 
 .weekdays {
   display: flex;
   width: 280px;
   margin-top: 10px;
+  cursor: default;
 }
 
 .weekdays div {
@@ -297,9 +316,10 @@ input, textarea {
   justify-content: center;
   font-weight: 300;
   font-size: 14px;
+  cursor: pointer;
 }
 
-.days div:hover:not(.today) {
+.days div:hover {
   background-color: var(--secondary-text-color);
 }
 
@@ -510,6 +530,10 @@ input, textarea {
   fill: var(--primary-color)
 }
 
+.container.sign-up {
+  padding: 90px 16px 0 16px ;
+}
+
 .sign {
   width: 1232px;
   height: 200px;
@@ -543,8 +567,9 @@ input, textarea {
   font-size: 18px;
   line-height: 44px;
   text-align: center;
-  border: 1px solid #3077C6;
+  border: 1px solid var(--primary-color);
   border-radius: 8px;
+  color: var(--primary-color);
 }
 
 .sign-close {
@@ -556,6 +581,9 @@ input, textarea {
   top: 9%;
 }
 
+.sign-mobi {
+  display: none;
+}
 
 /*--*/
 
@@ -977,23 +1005,4 @@ li {
     font-size: 12px;
     text-align: center;
   }
-}
-
-/*lesson-14 form*/
-.form-lesson {
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-}
-
-input {
-  margin-bottom: 16px;
-}
-
-button {
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 26px;
-  color: #fff;
-  background-color: #337ab7;
 }

@@ -225,18 +225,14 @@ console.log(sum(5)(2));
 
 const date = new Date();
 
-const renderCalendar = () => {
+const renderCalendar = (year, month, elementID) => {
     date.setDate(1);
 
     const monthDays = document.querySelector(".days");
 
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
-    const prevLastDay = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        0
-    ).getDate();
+    const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
 
     const firstDayIndex = date.getDay();
 
@@ -245,14 +241,15 @@ const renderCalendar = () => {
     const nextDays = 7 - lastDayIndex - 1;
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-        "November", "December"];
+        "November", "December"]; //массив месяцев
 
-    document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+    const nameMonth = document.getElementById (elementID);
+    nameMonth.textContent = `${months[date.getMonth()]} ${date.getFullYear()}`; //выводим месяц в h1
 
     let days = "";
 
-    for (let x = firstDayIndex; x > 0; x--) {
-        days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+    for (let x = firstDayIndex; x > 1; x--) {
+        days += `<div class="prev-date">${prevLastDay}</div>`;
     }
 
     for (let i = 1; i <= lastDay; i++) {
@@ -268,8 +265,8 @@ const renderCalendar = () => {
 
     for (let j = 1; j <= nextDays; j++) {
         days += `<div class="next-date">${j}</div>`;
-        monthDays.innerHTML = days;
     }
+    monthDays.innerHTML = days;
 };
 
 document.querySelector(".prev").addEventListener("click", () => {
@@ -282,7 +279,8 @@ document.querySelector(".next").addEventListener("click", () => {
     renderCalendar();
 });
 
-renderCalendar();
+renderCalendar(date.getFullYear(), date.getMonth(), 'month');
+//renderCalendar(date.getFullYear(), date.setMonth(date.getMonth() + 1),'month-next');
 
 // Работа с классами
 
@@ -396,34 +394,34 @@ console.log(students.getInfo());
 //});
 
 //Покрасить абзацы по клику
-const text1El = document.getElementById('text1');
-const text2El = document.getElementById('text2');
-const text3El = document.getElementById('text3');
+//const text1El = document.getElementById('text1');
+//const text2El = document.getElementById('text2');
+//const text3El = document.getElementById('text3');
+//
+//const colors = {
+//    color: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
+//    [Symbol.iterator]() {
+//        return this;
+//    },
+//    next(colorText) {
+//        return {
+//            done: false,
+//            value: this.color[colorText],
+//        };
+//    },
+//};
+//
+//const colorText = () => {
+//    let j = 0;
+//    return (event) => {
+//        event.target.style.color = colors.next(j).value;
+//        j = j > 3 ? 0 : j + 1;
+//    };
+//};
 
-const colors = {
-    color: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
-    [Symbol.iterator]() {
-        return this;
-    },
-    next(colorText) {
-        return {
-            done: false,
-            value: this.color[colorText],
-        };
-    },
-};
-
-const colorText = () => {
-    let j = 0;
-    return (event) => {
-        event.target.style.color = colors.next(j).value;
-        j = j > 3 ? 0 : j + 1;
-    };
-};
-
-text1El.addEventListener('click', colorText());
-text2El.addEventListener('click', colorText());
-text3El.addEventListener('click', colorText());
+//text1El.addEventListener('click', colorText());
+//text2El.addEventListener('click', colorText());
+//text3El.addEventListener('click', colorText());
 
 //lesson-12 отображение  блока "Homes guests loves" на основе данных, полученных с помощью `fetch` по url
 
@@ -453,6 +451,7 @@ text3El.addEventListener('click', colorText());
 //    }
 //})();
 
+
 //lesson-13 Reduce the number of requests to the server.
 
 const homesEl = document.getElementById('homes');
@@ -471,6 +470,7 @@ const homesEl = document.getElementById('homes');
     if (!data) {
         console.log('error')
     } else {
+        bubbleSort(data);
         data.forEach((item, index) => {
             const el = document.createElement('div');
             el.classList.add('home', 'col-3', 'col-xs-3');
@@ -514,3 +514,18 @@ formEl.addEventListener('submit', async  event => {
 
         console.log(res);
 });
+
+//lesson-15 Bubble sorting of data from the "Homes guests loves" block by the name field.
+
+function bubbleSort(array) {
+    for (let n = 0; n < array.length; n++) {
+        for (let i = 0; i < array.length -1 -n; i++){
+            if (array[i].name > array[i + 1].name){
+                const buff = array[i].name;
+                array[i].name = array[i + 1].name;
+                array[i + 1].name = buff;
+            }
+        }
+    }
+    return array;
+}

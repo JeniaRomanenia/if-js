@@ -9,9 +9,6 @@
   <title>Title</title>
 </head>
 <body>
-<p id="text1">Text 1</p>
-<p id="text2">Text 2</p>
-<p id="text3">Text 3</p>
 <svg xmlns="http://www.w3.org/2000/svg" class="sprite">
   <symbol id="account" viewBox="0 0 40 40">
     <path
@@ -182,25 +179,58 @@
     <div class="page">
       <h2 class="page-title">Discover stays
         <br>to live, work or just relax</h2>
-      <form action="/" method="get">
-        <div class="labels">
-          <label for="city">
+      <div class="forms">
+        <div class="form-city">
+          <input id="city" class="input-form-city" type="text" placeholder="New York">
+          <label for="city" class="label-form-city">
             Your destination or hotel name
           </label>
-          <label for="data">
-            Check-in — Check-out
-          </label>
         </div>
-        <div class="inputs">
-          <input id="city" class="input_city" type="text" placeholder="New York">
-          <input id="data" class="input_data" type="text" placeholder="Tue 15 Sept — Sat 19 Sept">
-          <input id="room" class="input_room" type="text" placeholder="2 Adults — 0 Children — 1 Room">
-          <button class="button-form" type="submit">Search</button>
+        <div class="form-check">
+            <input id="check" class="input-check" type="text" placeholder="Tue 15 Sept - Sat 19 Sept">
+            <label for="check" class="label-check">Check-in — Check-out</label>
         </div>
-      </form>
-
-
-
+        <div class="form-room">
+            <input id="room" class="input-room" type="text" placeholder="2 Adults — 0 Children — 1 Room">
+        </div>
+        <div>
+          <button class="form-button" type="submit">Search</button>
+        </div>
+      </div>
+      <div class="calendarAll" id="calendarAll">
+        <div class="calendar" id="calendar">
+          <div class="month">
+            <i class="fas fa-angle-left prev"></i>
+            <div class="date" id="month"></div>
+          </div>
+          <div class="weekdays">
+            <div>Mo</div>
+            <div>Tu</div>
+            <div>We</div>
+            <div>Th</div>
+            <div>Fr</div>
+            <div>Sa</div>
+            <div>Su</div>
+          </div>
+          <div class="days"></div>
+        </div>
+        <div class="calendar" id="calendar-next">
+          <div class="month">
+            <div class="date" id="month-next"></div>
+            <i class="fas fa-angle-right next"></i>
+          </div>
+          <div class="weekdays">
+            <div>Mo</div>
+            <div>Tu</div>
+            <div>We</div>
+            <div>Th</div>
+            <div>Fr</div>
+            <div>Sa</div>
+            <div>Su</div>
+          </div>
+          <div class="days"></div>
+        </div>
+      </div>
     </div>
     <div class="apps">
       <a href="#" class="android">
@@ -216,26 +246,45 @@
     </div>
   </div>
 </div>
-<div class="calendarAll" id="calendarAll">
-<div class="calendar">
-  <div class="month">
-    <i class="fas fa-angle-left prev"></i>
-    <div class="date">
-      <h1></h1>
+
+<div class="offers">
+  <div class="container">
+    <h2 class="text-center active">What do we offer</h2>
+    <div class="row-offers">
+      <div class="offer col-3 col-xs-6">
+        <div class="icon">
+          <svg class="icon-wrap">
+            <use href="#headset"></use>
+          </svg>
+        </div>
+        <span class="offer-title">Support 24/7</span>
+      </div>
+      <div class="offer col-3 col-xs-6">
+        <div class="icon">
+          <svg class="icon-wrap">
+            <use href="#forum"></use>
+          </svg>
+        </div>
+        <span class="offer-title">Communicate directly</span>
+      </div>
+      <div class="offer col-3 col-xs-6">
+        <div class="icon">
+          <svg class="icon-wrap">
+            <use href="#comp"></use>
+          </svg>
+        </div>
+        <span class="offer-title">Book online</span>
+      </div>
+      <div class="offer col-3 col-xs-6">
+        <div class="icon">
+          <svg class="icon-wrap">
+            <use href="#like"></use>
+          </svg>
+        </div>
+        <span class="offer-title">Real guest reviews</span>
+      </div>
     </div>
-    <i class="fas fa-angle-right next"></i>
   </div>
-  <div class="weekdays">
-    <div>Su</div>
-    <div>Mo</div>
-    <div>Tu</div>
-    <div>We</div>
-    <div>Th</div>
-    <div>Fr</div>
-    <div>Sa</div>
-  </div>
-  <div class="days"></div>
-</div>
 </div>
 <div class="homes">
 <div class="container">
@@ -243,12 +292,299 @@
     Homes guests loves
   </h2>
 <div id="homes" class="row"></div></div></div>
+<div class="destinations">
+  <div class="container">
+    <h2 class="text-center h2-text">
+      The best destinations
+    </h2>
+    <div class="destinations-tabs">
+      <button class="button destinations-button-regions">
+        Regions
+      </button>
+      <button class="button destinations-button-cities">
+        Cities
+      </button>
+      <button class="button destinations-button-places">
+        Places of interest
+      </button>
+    </div>
+    <div class="row">
+      <div class="places col-3">
+        <div class="positions-booknow">
+          <div class="destinations-filter">
+            <img class="destinations-img" src="./images/maldives.png" alt="Maldives">
+            <div class="destinations-booknow">
+              <a class="destinations-booknow-link" href="#">
+                Book now
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="homes-link" href="#">
+          Maldives
+        </a>
+      </div>
+      <div class="places col-3">
+        <div class="positions-booknow">
+          <div class="destinations-filter">
+            <img class="destinations-img" src="./images/spain.png" alt="Spain">
+            <div class="destinations-booknow">
+              <a class="destinations-booknow-link" href="#">
+                Book now
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="homes-link" href="#">
+          Spain
+        </a>
+      </div>
+      <div class="places col-3">
+        <div class="positions-booknow">
+          <div class="destinations-filter">
+            <img class="destinations-img" src="./images/norway.png" alt="Norway">
+            <div class="destinations-booknow">
+              <a class="destinations-booknow-link" href="#">
+                Book now
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="homes-link" href="#">
+          Norway
+        </a>
+      </div>
+      <div class="places col-3">
+        <div class="positions-booknow">
+          <div class="destinations-filter">
+            <img class="destinations-img" src="./images/island.png" alt="Island">
+            <div class="destinations-booknow">
+              <a class="destinations-booknow-link" href="#">
+                Book now
+              </a>
+            </div>
+          </div>
+        </div>
+        <a class="homes-link" href="#">
+          Island
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container sign-up">
+  <div class="sign">
+  <svg class="sign-user-svg">
+    <use href="#user">
+    </use>
+  </svg>
+    <div>
+  <div class="text-sign">
+    Sing up and get 20% off your first booking
+  </div>
+  <div class="text-sign-mobi">
+    Sing up in the app and get 20%
+    <br>
+    off your first booking
+  </div>
+  <button class="sign-botton">
+    Sing up
+  </button>
+    </div>
+    <div class="sign-mobi">
+      Install
+    </div>
+    <div >
+      <a href="#">
+        <svg class="sign-close">
+          <use href="#close"></use>
+        </svg>
+      </a>
+    </div>
+    </div>
+  </div>
+<div class="reviews">
+  <div class="container">
+    <h2 class="text-center h2-text">
+      Guests reviews
+    </h2>
+    <div class="row">
+      <div class="col-4 col-xs-6">
+        <div class="reviews-background">
+          <div class="reviews-imgs">
+            <img class="guests-img" src="./images/bali.png" alt="Bali">
+            <div class="price">
+              <p class="price-text">From 250 USD</p>
+            </div>
+          </div>
+          <div class="places-all">
+            <div class="place">
+            <p class="places-hotel">Ubud Bali Resort&SPA</p>
+            <p class="places-country">Bali, Indonesia</p>
+            </div>
+          <div class="guests-rating-reviews">
+            <p class="guests-rating">9,4</p>
+            <p class="guests-reviews">1324 reviews</p>
+          </div>
+          </div>
+          <div class="comment">
+            <svg class="guests-account">
+              <use href="#account"></use>
+            </svg>
+            <div class="guests-name-country">
+              <p class="guests-name">Hanna Ivanova</p>
+              <div class="guests-сountry">
+                <img src="./images/ukrain.png" alt="ukrain">
+                <p class="guests-place">Ukraine</p>
+              </div>
+            </div>
+          </div>
+          <div class="comment-text">
+            <p>Great location, really pleasant and clean rooms, but the thing that makes this such a good place to stay
+              are the staff. All of the people are incredibly helpful and generous with their time and advice.</p>
+          </div>
+      </div>
+    </div>
+      <div class="col-4 col-xs-6">
+        <div class="reviews-background">
+          <div class="reviews-imgs">
+            <img class="guests-img" src="./images/rotterdam.png" alt="Rotterdam">
+            <div class="price">
+              <p class="price-text">From 40 USD</p>
+            </div>
+          </div>
+          <div class="places-all">
+            <div class="place">
+              <p class="places-hotel">King Kong Hostel</p>
+              <p class="places-country">Rotterdam, Netherlands</p>
+            </div>
+            <div class="guests-rating-reviews">
+              <p class="guests-rating">8,9</p>
+              <p class="guests-reviews">2016 reviews</p>
+            </div>
+          </div>
+          <div class="comment">
+            <svg class="guests-account">
+              <use href="#account"></use>
+            </svg>
+            <div class="guests-name-country">
+              <p class="guests-name">Adam Smith</p>
+              <div class="guests-сountry">
+                <img src="./images/usa.png" alt="usa">
+                <p class="guests-place">USA</p>
+              </div>
+            </div>
+          </div>
+          <div class="comment-text">
+            <p>I've been in this hostel for a month and here is the best hostel of all <br>
+              Excellent management of excellent and ethical staff and bedrooms Bathrooms are always clean and excellent
+              <br>Most importantly, those who work here are kind and good-natured.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4 col-xs-6">
+        <div class="reviews-background">
+          <div class="reviews-imgs">
+            <img class="guests-img" src="./images/ourika.png" alt="Ourika">
+            <div class="price">
+              <p class="price-text">From 100 USD</p>
+            </div>
+          </div>
+          <div class="places-all">
+            <div class="place">
+              <p class="places-hotel">Rokoko Hotel</p>
+              <p class="places-country">Ourika, Marocco</p>
+            </div>
+            <div class="guests-rating-reviews">
+              <p class="guests-rating">9,1</p>
+              <p class="guests-reviews">815 reviews</p>
+            </div>
+          </div>
+          <div class="comment">
+            <svg class="guests-account">
+              <use href="#account"></use>
+            </svg>
+            <div class="guests-name-country">
+              <p class="guests-name">Anika Messer</p>
+              <div class="guests-сountry">
+                <img src="./images/germany.png" alt="germany">
+                <p class="guests-place">Germany</p>
+              </div>
+            </div>
+          </div>
+          <div class="comment-text">
+            <p>Efficient, friendly, professional, and appropriately attentive. Great hotel in a great location.
+              Easy access to all the surrounding historical sites. Staff is fantastic. Will definitely stay at this
+              location during my next stay in Marocco.</p>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
 
-<div class="container">
-  <form id="form" class="form-lesson">
-        <input type="file" name="file" id="file">
-        <button type="submit">Отправить</button>
-  </form>
+
+<div class="footer">
+  <div class="container">
+    <div class="logo_footer">
+      <svg class="logo_in_footer">
+        <use href="#logo"></use>
+      </svg>
+    </div>
+    <div class="menu_footer">
+        <ul class="text_in_footer col-4">
+          <li class="text1">
+            <a href="#" class="footer_text">About</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">How Triphouse works</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Careers</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Privacy</a>
+          </li>
+          <li><a href="#" class="footer_text">Terms</a>
+          </li>
+        </ul>
+        <ul class="text_in_footer col-4">
+          <li class="text1">
+            <a href="#" class="footer_text">Property types</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Guest houses</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Hotels</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Apartments</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Villas</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Holiday homes</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Hostels</a>
+          </li>
+        </ul>
+        <ul class="text_in_footer col-4">
+          <li class="text1">
+            <a class="footer_text">Support</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">Contact Customer Service</a>
+          </li>
+          <li>
+            <a href="#" class="footer_text">FAQ</a>
+          </li>
+        </ul>
+    </div>
+    <div class="copyright">&copy; 2020 Triphouse, Inc. All rights reserved</div>
+  </div>
+</div>
 </div>
 <script src="main.js"></script>
 </body>
