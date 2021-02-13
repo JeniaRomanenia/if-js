@@ -532,7 +532,8 @@ function bubbleSort(array) {
 
 //lesson-16 Using the form from the layout, make a hotel search.
 
-/*const formEl = document.getElementById('forms');
+/*
+const formEl = document.getElementById('forms');
 const searchEl = document.getElementById('city').value.trim().toLowerCase();
 
 formEl.addEventListener('submit', async (event) => {
@@ -546,4 +547,5 @@ formEl.addEventListener('submit', async (event) => {
         })
         .then(result => result)
         .catch(error => console.log(error.message));
-})*/
+})
+ */
