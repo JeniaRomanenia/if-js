@@ -529,3 +529,21 @@ function bubbleSort(array) {
     }
     return array;
 }
+
+//lesson-16 Using the form from the layout, make a hotel search.
+
+/*const formEl = document.getElementById('forms');
+const searchEl = document.getElementById('city').value.trim().toLowerCase();
+
+formEl.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const result = await fetch('https://fe-student-api.herokuapp.com/api/hotels?search=${searchEl}')
+        .then ((response) => {
+            if (!response.Ok) {
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        })
+        .then(result => result)
+        .catch(error => console.log(error.message));
+})*/

@@ -585,8 +585,6 @@ input, textarea {
   display: none;
 }
 
-/*--*/
-
 [class*='col'] {
   flex-grow: 1;
   padding: 0 8px;
@@ -1006,3 +1004,22 @@ li {
     text-align: center;
   }
 }
+
+/*lesson-14 form
+.form-lesson {
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  margin-bottom: 16px;
+}
+
+button {
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 26px;
+  color: #fff;
+  background-color: #337ab7;
+}*/
