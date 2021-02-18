@@ -31,7 +31,7 @@ for (let i = 0; i < array2.length; i++) {
 }
 
 // четные элементы
-for (let i = 0; i <array2.length; i++) {
+for (let i = 0; i < array2.length; i++) {
     if (array2[i] % 2 === 0) {
         console.log(array2[i]);
     }
@@ -43,6 +43,7 @@ function Palindrome(word) {
     return Reverse === word;
 
 }
+
 console.log(Palindrome('шалаш'));
 
 //функция min(a, b),возвращает меньшее из чисел
@@ -50,8 +51,9 @@ function min(a, b) {
     if (a < b) {
         return a;
     }
-        return b;
+    return b;
 }
+
 console.log(min(8, 3)); // 3
 
 //функция max(a, b),возвращает большее из чисел
@@ -59,24 +61,27 @@ function max(a, y) {
     if (a > y) {
         return a;
     }
-        return y;
+    return y;
 }
+
 console.log(max(4, 2)); // 4
 
 //функция min(a, b) с тернарным оператором
 function min1(a, b) {
     return a < b ? a : b;
 }
+
 console.log(min1(4, 3)); // 3
 
 //функция max(a, b) с тернарным оператором
 function max1(a, y) {
     return a > y ? a : y;
 }
+
 console.log(max1(2, 8)); // 8
 
 //функция, которая заменяет все 0 на 'zero'
-let array3 = [ ];
+let array3 = [];
 for (let i = 0; i < 10; i++) {
     array3[i] = Math.floor(Math.random() * 101);
 }
@@ -97,10 +102,11 @@ console.log(myFunc(array3));
 
 // функция sum
 function sum(a = 0) {
-    return function(b = 0) {
+    return function (b = 0) {
         return a + b;
     };
 }
+
 console.log(sum(5)(2));
 
 // Покрасьте абзацы по клику (событие click)
@@ -187,7 +193,6 @@ console.log(sum(5)(2));
 //console.log(search('ger '));
 
 
-
 // функция getCalendarMonth
 
 //const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
@@ -202,8 +207,8 @@ console.log(sum(5)(2));
 //    const result = [[]];                             //задаем вложенный массив (наш месяц)
 
 //    for (let i = 1; i <= iteration; i++) {
- //       if (result[subArrayIndex].length === daysInWeek) {
- //           if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
+//       if (result[subArrayIndex].length === daysInWeek) {
+//           if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
 //                break;
 //            }
 //            subArrayIndex++;                       //индекс массива увеличивается на 1
@@ -243,7 +248,7 @@ const renderCalendar = (year, month, elementID) => {
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
         "November", "December"]; //массив месяцев
 
-    const nameMonth = document.getElementById (elementID);
+    const nameMonth = document.getElementById(elementID);
     nameMonth.textContent = `${months[date.getMonth()]} ${date.getFullYear()}`; //выводим месяц в h1
 
     let days = "";
@@ -316,6 +321,7 @@ class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
     }
@@ -323,22 +329,24 @@ class User {
 
 class Student extends User {
     constructor(firstName, lastName, admissionYear, courseName) {
-        super (firstName, lastName);
+        super(firstName, lastName);
         this.admissionYear = admissionYear;
         this.courseName = courseName;
     }
+
     get course() {
-        return new Date().getFullYear()-this.admissionYear;
- }
+        return new Date().getFullYear() - this.admissionYear;
+    }
 }
 
 class Students {
     constructor(students) {
-        this.students = students.map (({
-            firstName, lastName, admissionYear, courseName,
-        }) => new Student (firstName, lastName, admissionYear, courseName));
+        this.students = students.map(({
+                                          firstName, lastName, admissionYear, courseName,
+                                      }) => new Student(firstName, lastName, admissionYear, courseName));
     }
-    getInfo(){
+
+    getInfo() {
         this.students.sort((prev, next) => prev.course - next.course);
         const arr = [];
         this.students.forEach((item) => {
@@ -454,34 +462,37 @@ console.log(students.getInfo());
 
 //lesson-13 Reduce the number of requests to the server.
 
-function addCards (array, homes) {
+function addCards(array, homes) {
     array.forEach((item, index) => {
-            const el = document.createElement('div');
-             el.classList.add('home', 'col-3', 'col-xs-3');
-             el.innerHTML = `
+        const el = document.createElement('div');
+        el.classList.add('home', 'col-3', 'col-xs-3');
+        el.innerHTML = `
          <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
          <a class="homes-link" href="">${item.name}</a>
          <p class="homes-text">${item.city}, ${item.country}</p>
      `;
-             homes.appendChild(el);
-             if (index > 3) {
-                 el.classList.add('homes-displaynone');
-            }
-         });}
+        homes.appendChild(el);
+        if (index > 3) {
+            el.classList.add('homes-displaynone');
+        }
+    });
+}
 
 const homesEl = document.getElementById('homes');
 
 (async () => {
     let data;
     if (sessionStorage.getItem('homes') == null) {
-      data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-        .then((response) => response.json())
-        .then((data1) => data1)
-        .catch((err) => {console.log(err)});
-      sessionStorage.setItem('homes', JSON.stringify(data));
-} else {
-    data = JSON.parse(sessionStorage.getItem('homes'));
-}
+        data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
+            .then((response) => response.json())
+            .then((data1) => data1)
+            .catch((err) => {
+                console.log(err)
+            });
+        sessionStorage.setItem('homes', JSON.stringify(data));
+    } else {
+        data = JSON.parse(sessionStorage.getItem('homes'));
+    }
     if (!data) {
         console.log('error')
     } else {
@@ -494,18 +505,18 @@ const homesEl = document.getElementById('homes');
 
 const formLessonEl = document.getElementById('form');
 
-formLessonEl.addEventListener('submit', async  event => {
+formLessonEl.addEventListener('submit', async event => {
     event.preventDefault();
 
 
-    const res = await  fetch('https://fe-student-api.herokuapp.com/api/file', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'multipart/form-data',
+    const res = await fetch('https://fe-student-api.herokuapp.com/api/file', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: new FormData(formLessonEl),
         },
-        body: new FormData(formLessonEl),
-    },
-        )
+    )
         .then(response => {
             if (!response.ok) {
                 throw new Error(response.statusText);
@@ -515,15 +526,15 @@ formLessonEl.addEventListener('submit', async  event => {
         .then(result => result)
         .catch(error => console.log(error.message));
 
-        console.log(res);
+    console.log(res);
 });
 
 //lesson-15 Bubble sorting of data from the "Homes guests loves" block by the name field.
 
 function bubbleSort(array) {
     for (let n = 0; n < array.length; n++) {
-        for (let i = 0; i < array.length -1 -n; i++){
-            if (array[i].name > array[i + 1].name){
+        for (let i = 0; i < array.length - 1 - n; i++) {
+            if (array[i].name > array[i + 1].name) {
                 const buff = array[i].name;
                 array[i].name = array[i + 1].name;
                 array[i + 1].name = buff;
