@@ -454,6 +454,21 @@ console.log(students.getInfo());
 
 //lesson-13 Reduce the number of requests to the server.
 
+function addCards (array, homes) {
+    array.forEach((item, index) => {
+            const el = document.createElement('div');
+             el.classList.add('home', 'col-3', 'col-xs-3');
+             el.innerHTML = `
+         <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
+         <a class="homes-link" href="">${item.name}</a>
+         <p class="homes-text">${item.city}, ${item.country}</p>
+     `;
+             homes.appendChild(el);
+             if (index > 3) {
+                 el.classList.add('homes-displaynone');
+            }
+         });}
+
 const homesEl = document.getElementById('homes');
 
 (async () => {
@@ -471,27 +486,15 @@ const homesEl = document.getElementById('homes');
         console.log('error')
     } else {
         bubbleSort(data);
-        data.forEach((item, index) => {
-            const el = document.createElement('div');
-            el.classList.add('home', 'col-3', 'col-xs-3');
-            el.innerHTML = `
-        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
-        <a class="homes-link" href="">${item.name}</a>
-        <p class="homes-text">${item.city}, ${item.country}</p>
-    `;
-            homesEl.appendChild(el);
-            if (index > 3) {
-                el.classList.add('homes-displaynone');
-            }
-        });
+        addCards(data, homesEl);
     }
 })();
 
 //lesson-14 The form that will submit the file to the url https://fe-student-api.herokuapp.com/api/file.
 
-const formEl = document.getElementById('form');
+const formLessonEl = document.getElementById('form');
 
-formEl.addEventListener('submit', async  event => {
+formLessonEl.addEventListener('submit', async  event => {
     event.preventDefault();
 
 
@@ -500,7 +503,7 @@ formEl.addEventListener('submit', async  event => {
         headers: {
             'Content-Type': 'multipart/form-data',
         },
-        body: new FormData(formEl),
+        body: new FormData(formLessonEl),
     },
         )
         .then(response => {
@@ -530,22 +533,3 @@ function bubbleSort(array) {
     return array;
 }
 
-//lesson-16 Using the form from the layout, make a hotel search.
-
-/*
-const formEl = document.getElementById('forms');
-const searchEl = document.getElementById('city').value.trim().toLowerCase();
-
-formEl.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const result = await fetch('https://fe-student-api.herokuapp.com/api/hotels?search=${searchEl}')
-        .then ((response) => {
-            if (!response.Ok) {
-                throw new Error(response.statusText);
-            }
-            return response.json();
-        })
-        .then(result => result)
-        .catch(error => console.log(error.message));
-})
- */
