@@ -465,7 +465,7 @@ console.log(students.getInfo());
 function addCards(array, homes) {
     array.forEach((item, index) => {
         const el = document.createElement('div');
-        el.classList.add('home', 'col-3', 'col-xs-3');
+        el.classList.add('col-3', 'col-xs-3');
         el.innerHTML = `
          <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
          <a class="homes-link" href="">${item.name}</a>
@@ -478,17 +478,26 @@ function addCards(array, homes) {
     });
 }
 
+const sendReguest = (url, options) => (
+    fetch(url, options)
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(response.statusText);
+        }
+        return response.json();
+    })
+    .then((data1) => data1)
+    .catch(error => console.log(error.message))
+);
+
 const homesEl = document.getElementById('homes');
+const urls = new URL ('https://fe-student-api.herokuapp.com/api');
+const urlHotelsPopular = new URL('/hotels/popular', urls);
 
 (async () => {
     let data;
     if (sessionStorage.getItem('homes') == null) {
-        data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-            .then((response) => response.json())
-            .then((data1) => data1)
-            .catch((err) => {
-                console.log(err)
-            });
+        data = await sendReguest (urlHotelsPopular)
         sessionStorage.setItem('homes', JSON.stringify(data));
     } else {
         data = JSON.parse(sessionStorage.getItem('homes'));
@@ -503,13 +512,14 @@ const homesEl = document.getElementById('homes');
 
 //lesson-14 The form that will submit the file to the url https://fe-student-api.herokuapp.com/api/file.
 
+const urlFile = new URL ('/file', urls);
 const formLessonEl = document.getElementById('form');
 
 formLessonEl.addEventListener('submit', async event => {
     event.preventDefault();
 
 
-    const res = await fetch('https://fe-student-api.herokuapp.com/api/file', {
+    const res = await sendReguest (urlFile, {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',
@@ -517,15 +527,6 @@ formLessonEl.addEventListener('submit', async event => {
             body: new FormData(formLessonEl),
         },
     )
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            return response.json();
-        })
-        .then(result => result)
-        .catch(error => console.log(error.message));
-
     console.log(res);
 });
 
@@ -544,3 +545,40 @@ function bubbleSort(array) {
     return array;
 }
 
+//lesson-16 Made search hotel.
+const availableHotelsEl = document.getElementById('availableHotels');
+const formsEl = document.getElementById('forms');
+
+formsEl.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formCity = document.getElementById('city');
+    const formCityData = formCity.value.toLowerCase().trim();
+
+    const data = await sendReguest (`https://fe-student-api.herokuapp.com/api/hotels?search=${formCityData}`)
+    if (data.length === 0) {
+        availableHotelsEl.classList.add('homes');
+        availableHotelsEl.innerHTML = `
+        <div class='container'>
+            <h2 class="text-center h2-text">Available hotels</h2>
+        </div>
+        `;
+    }
+    if (data.length !== 0) {
+        bubbleSort(data);
+        availableHotelsEl.classList.add('homes');
+        availableHotelsEl.innerHTML = `
+        <div class='container'>
+            <h2 class="text-center h2-text">Available hotels</h2>
+            <div class="row" id="available-homes">
+            <svg class="homes-svg-right">
+        <use href="#arrow"></use>
+      </svg>
+      <svg class="homes-svg-left">
+        <use href="#arrow"></use>
+      </svg>
+        </div>
+        `;
+        const availableHomesEl = document.getElementById('available-homes')
+        addCards(data, availableHomesEl);
+    }
+});
