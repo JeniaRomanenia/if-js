@@ -491,13 +491,13 @@ const sendReguest = (url, options) => (
 );
 
 const homesEl = document.getElementById('homes');
-//const urls = new URL ('https://fe-student-api.herokuapp.com/api');
-//const urlHotelsPopular = new URL('hotels/popular', urls);
+const urls = new URL ('https://fe-student-api.herokuapp.com/api');
+const urlHotelsPopular = new URL('hotels/popular', urls);
 
 (async () => {
     let data;
     if (!sessionStorage.getItem('homes')) {
-        data = await sendReguest ('https://fe-student-api.herokuapp.com/api/hotels/popular')
+        data = await sendReguest (urlHotelsPopular)
         sessionStorage.setItem('homes', JSON.stringify(data));
     } else {
         data = JSON.parse(sessionStorage.getItem('homes'));
@@ -512,14 +512,14 @@ const homesEl = document.getElementById('homes');
 
 //lesson-14 The form that will submit the file to the url https://fe-student-api.herokuapp.com/api/file.
 
-//const urlFile = new URL ('/file', urls);
+const urlFile = new URL ('/file', urls);
 const formLessonEl = document.getElementById('form');
 
 formLessonEl.addEventListener('submit', async event => {
     event.preventDefault();
 
 
-    const res = await sendReguest ('https://fe-student-api.herokuapp.com/api/file', {
+    const res = await sendReguest (urlFile, {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',
