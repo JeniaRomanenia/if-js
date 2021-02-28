@@ -360,7 +360,6 @@ const students = new Students(studentsData);
 console.log(students.getInfo());
 
 //lesson-13 Reduce the number of requests to the server.
-
 function addCards(array, homes) {
     array.forEach((item, index) => {
         const el = document.createElement('div');
