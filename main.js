@@ -359,113 +359,12 @@ class Students {
 const students = new Students(studentsData);
 console.log(students.getInfo());
 
-
-//Отображение контентв блока "Homes guests loves" из массива
-//const data = [
-//    {
-//        name: 'Hotel Leopold',
-//        city: 'Saint Petersburg',
-//        country: 'Russia',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/hotel-leopold_mflelk.jpg',
-//    },
-//    {
-//        name: 'Apartment Sunshine',
-//        city: 'Santa  Cruz de Tenerife',
-//        country: 'Spain',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/apartment-sunshine_vhdlel.jpg',
-//    },
-//    {
-//        name: 'Villa Kunerad',
-//        city: 'Vysokie Tatry',
-//        country: 'Slowakia',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/villa-kunerad_gdbqgv.jpg',
-//    },
-//    {
-//        name: 'Hostel Friendship',
-//        city: 'Berlin',
-//        country: 'Germany',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/hostel-friendship_aw6tn7.jpg',
-//    }
-//];
-
-//const homesEl = document.getElementById('container');
-
-//data.forEach(item => {
-//    const el = document.createElement('div');
-//    el.classList.add('home', 'col-3', 'col-xs-3')
-//    el.innerHTML = `
-//        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
-//        <a class="homes-link" href="">${item.name}</a>
-//        <p class="homes-text">${item.city}, ${item.country}</p>
-//    `;
-// homesEl.appendChild(el);
-//});
-
-//Покрасить абзацы по клику
-//const text1El = document.getElementById('text1');
-//const text2El = document.getElementById('text2');
-//const text3El = document.getElementById('text3');
-//
-//const colors = {
-//    color: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
-//    [Symbol.iterator]() {
-//        return this;
-//    },
-//    next(colorText) {
-//        return {
-//            done: false,
-//            value: this.color[colorText],
-//        };
-//    },
-//};
-//
-//const colorText = () => {
-//    let j = 0;
-//    return (event) => {
-//        event.target.style.color = colors.next(j).value;
-//        j = j > 3 ? 0 : j + 1;
-//    };
-//};
-
-//text1El.addEventListener('click', colorText());
-//text2El.addEventListener('click', colorText());
-//text3El.addEventListener('click', colorText());
-
-//lesson-12 отображение  блока "Homes guests loves" на основе данных, полученных с помощью `fetch` по url
-
-//const homesEl = document.getElementById('homes');
-
-//(async () => {
-//    const data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-//        .then((response) => response.json())
-//        .then((data1) => data1)
-//        .catch((err) => console.log(err));
-//    if (!data) {
-//        console.log('error')
-//    } else {
-//        data.forEach((item, index) => {
-//            const el = document.createElement('div');
-//            el.classList.add('home', 'col-3', 'col-xs-3');
-//            el.innerHTML = `
-//        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
-//        <a class="homes-link" href="">${item.name}</a>
-//        <p class="homes-text">${item.city}, ${item.country}</p>
-//    `;
-//            homesEl.appendChild(el);
-//            if (index > 3) {
-//                el.classList.add('homes-displaynone');
-//            }
-//    });
-//    }
-//})();
-
-
 //lesson-13 Reduce the number of requests to the server.
 
 function addCards(array, homes) {
     array.forEach((item, index) => {
         const el = document.createElement('div');
-        el.classList.add('col-3', 'col-xs-3');
+        el.classList.add('home', 'col-3', 'col-xs-3');
         el.innerHTML = `
          <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
          <a class="homes-link" href="">${item.name}</a>
@@ -486,49 +385,9 @@ const sendReguest = (url, options) => (
         }
         return response.json();
     })
-    .then((data1) => data1)
+    .then((data) => data)
     .catch(error => console.log(error.message))
 );
-
-const homesEl = document.getElementById('homes');
-const urls = new URL ('https://fe-student-api.herokuapp.com/api');
-const urlHotelsPopular = new URL('hotels/popular', urls);
-
-(async () => {
-    let data;
-    if (!sessionStorage.getItem('homes')) {
-        data = await sendReguest (urlHotelsPopular)
-        sessionStorage.setItem('homes', JSON.stringify(data));
-    } else {
-        data = JSON.parse(sessionStorage.getItem('homes'));
-    }
-    if (!data) {
-        console.log('error')
-    } else {
-        bubbleSort(data);
-        addCards(data, homesEl);
-    }
-})();
-
-//lesson-14 The form that will submit the file to the url https://fe-student-api.herokuapp.com/api/file.
-
-const urlFile = new URL ('/file', urls);
-const formLessonEl = document.getElementById('form');
-
-formLessonEl.addEventListener('submit', async event => {
-    event.preventDefault();
-
-
-    const res = await sendReguest (urlFile, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data',
-            },
-            body: new FormData(formLessonEl),
-        },
-    )
-    console.log(res);
-});
 
 //lesson-15 Bubble sorting of data from the "Homes guests loves" block by the name field.
 
@@ -544,6 +403,41 @@ function bubbleSort(array) {
     }
     return array;
 }
+
+const homesEl = document.getElementById('homes');
+
+(async () => {
+    let data;
+    if (!sessionStorage.getItem('homes')) {
+        data = await sendReguest ('https://fe-student-api.herokuapp.com/api/hotels/popular')
+        sessionStorage.setItem('homes', JSON.stringify(data));
+    } else {
+        data = JSON.parse(sessionStorage.getItem('homes'));
+    }
+    if (!data) {
+        console.log('error')
+    } else {
+        bubbleSort(data);
+        addCards(data, homesEl);
+    }
+})();
+
+//lesson-14 The form that will submit the file to the url https://fe-student-api.herokuapp.com/api/file.
+const formLessonEl = document.getElementById('form');
+
+formLessonEl.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    const res = await sendReguest ('https://fe-student-api.herokuapp.com/api/file', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: new FormData(formLessonEl),
+        },
+    )
+    console.log(res);
+});
 
 //lesson-16 Made search hotel.
 const availableHotelsEl = document.getElementById('availableHotels');
@@ -573,7 +467,7 @@ formsEl.addEventListener('submit', async (event) => {
             <svg class="homes-svg-right">
         <use href="#arrow"></use>
       </svg>
-      <svg class="homes-svg-left">
+      <svg class="homes-svg-left, homes-svg-left-displaynone">
         <use href="#arrow"></use>
       </svg>
         </div>
@@ -584,3 +478,7 @@ formsEl.addEventListener('submit', async (event) => {
 });
 
 //слайдер
+
+
+
+

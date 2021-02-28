@@ -478,6 +478,10 @@ a span {
   cursor: pointer;
 }
 
+.homes-svg-left-displaynone {
+  display: none;
+}
+
 .destinations-tabs {
   align-items: center;
   background-color: var(--stroke-color);
@@ -633,14 +637,10 @@ a span {
   display: none;
 }
 
-[class*='col'] {
+.home {
   flex-grow: 1;
   padding: 0 8px;
   fill: var(--primary-color);
-}
-
-[class*='col-'] {
-  flex-grow: 0;
 }
 
 .reviews-imgs {
@@ -1057,21 +1057,3 @@ li {
   }
 }
 
-/*lesson-14 form
-.form-lesson {
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-}
-
-input {
-  margin-bottom: 16px;
-}
-
-button {
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 26px;
-  color: #fff;
-  background-color: #337ab7;
-}*/
