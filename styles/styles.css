@@ -8,7 +8,7 @@
 }
 
 :root {
-  --primary-color: #3077C6;
+  --primary-color: #3077c6;
   --primary-dark-color: #10367C;
   --secondary: #F5BD41;
   --primary-text-color: #383838;
@@ -168,74 +168,111 @@ a span {
   font-size: 50px;
   line-height: 59px;
   color: var(--white-color);
-  margin-bottom: 100px;
+  margin-bottom: 145px;
 }
 
-form {
-  background: transparent;
-  border: none;
-}
-
-.inputs {
-  display: inline-flex;
+.forms {
+  display: flex;
   background-color: var(--white-color);
   border-radius: 8px;
-  border-left: 3px solid var(--stroke-color);
+  margin-bottom: 120px;
 }
 
-.labels {
-  margin-bottom: 24px;
-  padding-left: 24px;
-  font-size: 18px;
-  color: var(--white-color);
-}
-
-label {
-  margin-right: 220px;
-}
-
-.input_city {
+.form-city {
+  position: relative;
   width: 465px;
-  padding-left: 24px;
+}
+
+.input-form-city {
+  width: 100%;
+  height: 64px;
+  padding-left: 25px;
+  border-radius: 4px;
   border: none;
-  background: transparent;
-}
-
-.input_data {
-  width: 260px;
-  border-radius: 8px;
-  border-color: var(--secondary);
-  border-width: 3px;
-  border-style: solid;
-  text-align: center;
-  background: transparent;
-}
-
-.input_room {
-  width: 310px;
-  text-align: center;
-  border: none;
-  background: transparent;
-}
-
-input, textarea {
   font-size: 18px;
-  line-height: 21px;
+}
+
+.label-form-city {
+  left: 5%;
+  top: -70%;
+  color: var(--white-color);
+  position: absolute;
+  font-size: 18px;
+}
+
+.form-check {
+  display: flex;
+  position: relative;
+  border: 3px solid var(--secondary);
+  border-radius: 8px;
+  width: 257px;
+}
+
+.form-check-in, .form-check-out {
+  position: relative;
+}
+
+.input-check-in, .input-check-out {
+  width: 100%;
+  height: 54px;
+  border-radius: 4px;
+  border: none;
+  padding-left: 15px;
+  font-size: 18px;
   color: var(--primary-text-color);
 }
 
-.button-form {
-  width: 190px;
+.label-check-in {
+  left: 24px;
+  top: -49px;
+  position: absolute;
+  color: var(--white-color);
+  font-size: 18px;
+}
+
+.label-check-out {
+  left: -9px;
+  top: -49px;
+  position: absolute;
+  color: var(--white-color);
+  font-size: 18px;
+}
+
+.form-check-out:before {
+  content: '―';
+  position: absolute;
+  top: 30%;
+  left: -7%;
+}
+
+.label-check-out:before {
+  content: '―';
+  position: absolute;
+  left: -19px;
+}
+
+.form-room .input-room {
+  display: flex;
+  background-color: var(--white-color);
+  position: relative;
+  border-radius: 4px;
+  width: 320px;
+  text-align: center;
+  border: none;
+  padding: 23px 28px;
+  font-size: 18px;
+  color: var(--primary-text-color);
+}
+
+.form-button {
   background: var(--primary-color);
   color: #FFFFFF;
   font-size: 24px;
-  font-weight: 500;
-  text-align: center;
+  display: inline-flex;
   border-radius: 8px;
-  border-width: 3px;
-  border-color: var(--primary-color);
-  border-style: solid;
-  padding: 16px 57px;
+  border: none;
+  padding: 18px 60px;
+  cursor: pointer;
 }
 
 /*calendar*/
@@ -244,9 +281,9 @@ input, textarea {
   background-color: var(--white-color);
   border-radius: 8px;
   position: absolute;
-  display: flex;
-  top: 72px;
-  left: 0;
+  display: none;
+  top: 636px;;
+  left: 692px;
 }
 
 .calendar {
@@ -260,16 +297,18 @@ input, textarea {
   cursor: pointer;
 }
 
-.month h1 {
+.date {
   font-weight: 500;
   font-size: 18px;
   position: relative;
+  cursor: default;
 }
 
 .weekdays {
   display: flex;
   width: 280px;
   margin-top: 10px;
+  cursor: default;
 }
 
 .weekdays div {
@@ -297,9 +336,10 @@ input, textarea {
   justify-content: center;
   font-weight: 300;
   font-size: 14px;
+  cursor: pointer;
 }
 
-.days div:hover:not(.today) {
+.days div:hover {
   background-color: var(--secondary-text-color);
 }
 
@@ -400,8 +440,8 @@ input, textarea {
 
 .homes-img {
   width: 100%;
-  height: 69%;
-  margin-bottom: 16px;
+  height: 296px;
+  margin-bottom: 20px;
 }
 
 .homes-link {
@@ -413,10 +453,33 @@ input, textarea {
   padding-top: 24px;
 }
 
-.home  {
-  flex-grow: 0;
-  padding: 0 8px;
-  fill: var(--primary-color);
+.homes-displaynone {
+  display: none;
+}
+
+.homes-svg-right {
+  top: 30%;
+  right: -1%;
+  fill: none;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.homes-svg-left {
+  top: 28%;
+  right: 98%;
+  fill: none;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  transform: rotate(180deg);
+  cursor: pointer;
+}
+
+.homes-svg-left-displaynone {
+  display: none;
 }
 
 .destinations-tabs {
@@ -441,6 +504,7 @@ input, textarea {
   border: none;
   border-radius: 8px;
   font-size: 24px;
+  cursor: pointer;
 }
 
 .button:hover {
@@ -506,6 +570,21 @@ input, textarea {
   fill: var(--primary-color)
 }
 
+.best-destinations-svg-down {
+  top: 116%;
+  right: 49%;
+  transform: rotate(90deg);
+  fill: none;
+  width: 48px;
+  height: 48px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.container.sign-up {
+  padding: 90px 16px 0 16px ;
+}
+
 .sign {
   width: 1232px;
   height: 200px;
@@ -539,8 +618,10 @@ input, textarea {
   font-size: 18px;
   line-height: 44px;
   text-align: center;
-  border: 1px solid #3077C6;
+  border: 1px solid var(--primary-color);
   border-radius: 8px;
+  color: var(--primary-color);
+  cursor: pointer;
 }
 
 .sign-close {
@@ -552,10 +633,11 @@ input, textarea {
   top: 9%;
 }
 
+.sign-mobi {
+  display: none;
+}
 
-/*--*/
-
-[class*='col'] {
+.home {
   flex-grow: 1;
   padding: 0 8px;
   fill: var(--primary-color);

@@ -31,7 +31,7 @@ for (let i = 0; i < array2.length; i++) {
 }
 
 // четные элементы
-for (let i = 0; i <array2.length; i++) {
+for (let i = 0; i < array2.length; i++) {
     if (array2[i] % 2 === 0) {
         console.log(array2[i]);
     }
@@ -43,6 +43,7 @@ function Palindrome(word) {
     return Reverse === word;
 
 }
+
 console.log(Palindrome('шалаш'));
 
 //функция min(a, b),возвращает меньшее из чисел
@@ -50,8 +51,9 @@ function min(a, b) {
     if (a < b) {
         return a;
     }
-        return b;
+    return b;
 }
+
 console.log(min(8, 3)); // 3
 
 //функция max(a, b),возвращает большее из чисел
@@ -59,24 +61,27 @@ function max(a, y) {
     if (a > y) {
         return a;
     }
-        return y;
+    return y;
 }
+
 console.log(max(4, 2)); // 4
 
 //функция min(a, b) с тернарным оператором
 function min1(a, b) {
     return a < b ? a : b;
 }
+
 console.log(min1(4, 3)); // 3
 
 //функция max(a, b) с тернарным оператором
 function max1(a, y) {
     return a > y ? a : y;
 }
+
 console.log(max1(2, 8)); // 8
 
 //функция, которая заменяет все 0 на 'zero'
-let array3 = [ ];
+let array3 = [];
 for (let i = 0; i < 10; i++) {
     array3[i] = Math.floor(Math.random() * 101);
 }
@@ -97,10 +102,11 @@ console.log(myFunc(array3));
 
 // функция sum
 function sum(a = 0) {
-    return function(b = 0) {
+    return function (b = 0) {
         return a + b;
     };
 }
+
 console.log(sum(5)(2));
 
 // Покрасьте абзацы по клику (событие click)
@@ -187,7 +193,6 @@ console.log(sum(5)(2));
 //console.log(search('ger '));
 
 
-
 // функция getCalendarMonth
 
 //const getCalendarMonth = (daysInMonth, daysInWeek, dayOfWeek) => {
@@ -202,8 +207,8 @@ console.log(sum(5)(2));
 //    const result = [[]];                             //задаем вложенный массив (наш месяц)
 
 //    for (let i = 1; i <= iteration; i++) {
- //       if (result[subArrayIndex].length === daysInWeek) {
- //           if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
+//       if (result[subArrayIndex].length === daysInWeek) {
+//           if (result[subArrayIndex][result[subArrayIndex].length - 1] === daysInMonth) {
 //                break;
 //            }
 //            subArrayIndex++;                       //индекс массива увеличивается на 1
@@ -225,18 +230,14 @@ console.log(sum(5)(2));
 
 const date = new Date();
 
-const renderCalendar = () => {
+const renderCalendar = (year, month, elementID) => {
     date.setDate(1);
 
     const monthDays = document.querySelector(".days");
 
     const lastDay = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
 
-    const prevLastDay = new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        0
-    ).getDate();
+    const prevLastDay = new Date(date.getFullYear(), date.getMonth(), 0).getDate();
 
     const firstDayIndex = date.getDay();
 
@@ -245,14 +246,15 @@ const renderCalendar = () => {
     const nextDays = 7 - lastDayIndex - 1;
 
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October",
-        "November", "December"];
+        "November", "December"]; //массив месяцев
 
-    document.querySelector(".date h1").innerHTML = months[date.getMonth()];
+    const nameMonth = document.getElementById(elementID);
+    nameMonth.textContent = `${months[date.getMonth()]} ${date.getFullYear()}`; //выводим месяц в h1
 
     let days = "";
 
-    for (let x = firstDayIndex; x > 0; x--) {
-        days += `<div class="prev-date">${prevLastDay - x + 1}</div>`;
+    for (let x = firstDayIndex; x > 1; x--) {
+        days += `<div class="prev-date">${prevLastDay}</div>`;
     }
 
     for (let i = 1; i <= lastDay; i++) {
@@ -268,8 +270,8 @@ const renderCalendar = () => {
 
     for (let j = 1; j <= nextDays; j++) {
         days += `<div class="next-date">${j}</div>`;
-        monthDays.innerHTML = days;
     }
+    monthDays.innerHTML = days;
 };
 
 document.querySelector(".prev").addEventListener("click", () => {
@@ -282,7 +284,8 @@ document.querySelector(".next").addEventListener("click", () => {
     renderCalendar();
 });
 
-renderCalendar();
+renderCalendar(date.getFullYear(), date.getMonth(), 'month');
+//renderCalendar(date.getFullYear(), date.setMonth(date.getMonth() + 1),'month-next');
 
 // Работа с классами
 
@@ -318,6 +321,7 @@ class User {
         this.firstName = firstName;
         this.lastName = lastName;
     }
+
     get fullName() {
         return `${this.firstName} ${this.lastName}`;
     }
@@ -325,22 +329,24 @@ class User {
 
 class Student extends User {
     constructor(firstName, lastName, admissionYear, courseName) {
-        super (firstName, lastName);
+        super(firstName, lastName);
         this.admissionYear = admissionYear;
         this.courseName = courseName;
     }
+
     get course() {
-        return new Date().getFullYear()-this.admissionYear;
- }
+        return new Date().getFullYear() - this.admissionYear;
+    }
 }
 
 class Students {
     constructor(students) {
-        this.students = students.map (({
-            firstName, lastName, admissionYear, courseName,
-        }) => new Student (firstName, lastName, admissionYear, courseName));
+        this.students = students.map(({
+                                          firstName, lastName, admissionYear, courseName,
+                                      }) => new Student(firstName, lastName, admissionYear, courseName));
     }
-    getInfo(){
+
+    getInfo() {
         this.students.sort((prev, next) => prev.course - next.course);
         const arr = [];
         this.students.forEach((item) => {
@@ -353,100 +359,130 @@ class Students {
 const students = new Students(studentsData);
 console.log(students.getInfo());
 
+//lesson-13 Reduce the number of requests to the server.
+function addCards(array, homes) {
+    array.forEach((item, index) => {
+        const el = document.createElement('div');
+        el.classList.add('home', 'col-3', 'col-xs-3');
+        el.innerHTML = `
+         <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
+         <a class="homes-link" href="">${item.name}</a>
+         <p class="homes-text">${item.city}, ${item.country}</p>
+     `;
+        homes.appendChild(el);
+        if (index > 3) {
+            el.classList.add('homes-displaynone');
+        }
+    });
+}
 
-//Отображение контентв блока "Homes guests loves" из массива
-//const data = [
-//    {
-//        name: 'Hotel Leopold',
-//        city: 'Saint Petersburg',
-//        country: 'Russia',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/hotel-leopold_mflelk.jpg',
-//    },
-//    {
-//        name: 'Apartment Sunshine',
-//        city: 'Santa  Cruz de Tenerife',
-//        country: 'Spain',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/apartment-sunshine_vhdlel.jpg',
-//    },
-//    {
-//        name: 'Villa Kunerad',
-//        city: 'Vysokie Tatry',
-//        country: 'Slowakia',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379365/fe/villa-kunerad_gdbqgv.jpg',
-//    },
-//    {
-//        name: 'Hostel Friendship',
-//        city: 'Berlin',
-//        country: 'Germany',
-//        imageUrl: 'https://res.cloudinary.com/intellectfox/image/upload/v1610379364/fe/hostel-friendship_aw6tn7.jpg',
-//    }
-//];
+const sendReguest = (url, options) => (
+    fetch(url, options)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(response.statusText);
+            }
+            return response.json();
+        })
+        .then((data) => data)
+        .catch(error => console.log(error.message))
+);
 
-//const homesEl = document.getElementById('container');
+//lesson-15 Bubble sorting of data from the "Homes guests loves" block by the name field.
 
-//data.forEach(item => {
-//    const el = document.createElement('div');
-//    el.classList.add('home', 'col-3', 'col-xs-3')
-//    el.innerHTML = `
-//        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
-//        <a class="homes-link" href="">${item.name}</a>
-//        <p class="homes-text">${item.city}, ${item.country}</p>
-//    `;
-// homesEl.appendChild(el);
-//});
+function bubbleSort(array) {
+    for (let n = 0; n < array.length; n++) {
+        for (let i = 0; i < array.length - 1 - n; i++) {
+            if (array[i].name > array[i + 1].name) {
+                const buff = array[i].name;
+                array[i].name = array[i + 1].name;
+                array[i + 1].name = buff;
+            }
+        }
+    }
+    return array;
+}
 
-//Покрасить абзацы по клику
-const text1El = document.getElementById('text1');
-const text2El = document.getElementById('text2');
-const text3El = document.getElementById('text3');
-
-const colors = {
-    color: ['magenta', 'cyan', 'firebrick', 'springgreen', 'skyblue'],
-    [Symbol.iterator]() {
-        return this;
-    },
-    next(colorText) {
-        return {
-            done: false,
-            value: this.color[colorText],
-        };
-    },
-};
-
-const colorText = () => {
-    let j = 0;
-    return (event) => {
-        event.target.style.color = colors.next(j).value;
-        j = j > 3 ? 0 : j + 1;
-    };
-};
-
-text1El.addEventListener('click', colorText());
-text2El.addEventListener('click', colorText());
-text3El.addEventListener('click', colorText());
-
-//lesson-12 отображение  блока "Homes guests loves" на основе данных, полученных с помощью `fetch` по url
+const url = 'https://fe-student-api.herokuapp.com';
+const urlApi = url + '/api';
+const urlHotels = urlApi + '/hotels/popular';
+const urlSend = urlApi + '/file';
 
 const homesEl = document.getElementById('homes');
 
 (async () => {
-    const data = await fetch('https://fe-student-api.herokuapp.com/api/hotels/popular')
-        .then((response) => response.json())
-        .then((data1) => data1)
-        .catch((err) => console.log(err));
+    let data;
+    if (!sessionStorage.getItem('homes')) {
+        data = await sendReguest(urlHotels)
+        sessionStorage.setItem('homes', JSON.stringify(data));
+    } else {
+        data = JSON.parse(sessionStorage.getItem('homes'));
+    }
     if (!data) {
         console.log('error')
     } else {
-        data.forEach(item => {
-            const el = document.createElement('div');
-            el.classList.add('home', 'col-3', 'col-xs-3');
-            el.innerHTML = `
-        <img class="homes-img" src=${item.imageUrl} alt=${item.name}>
-        <a class="homes-link" href="">${item.name}</a>
-        <p class="homes-text">${item.city}, ${item.country}</p>
-    `;
-            homesEl.appendChild(el);
-    });
+        bubbleSort(data);
+        addCards(data, homesEl);
     }
 })();
+
+//lesson-14 The form that will submit the file to the url https://fe-student-api.herokuapp.com/api/file.
+
+const sendDataFormEl = document.getElementById('form');
+
+sendDataFormEl.addEventListener('submit', async event => {
+    event.preventDefault();
+
+    const res = await sendReguest(urlSend, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: new FormData(sendDataFormEl),
+        },
+    )
+    console.log(res);
+});
+
+//lesson-16 Made search hotel.
+const availableHotelsEl = document.getElementById('availableHotels');
+const formsEl = document.getElementById('forms');
+
+formsEl.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const formCity = document.getElementById('city');
+    const formCityData = formCity.value.toLowerCase().trim();
+
+    const data = await sendReguest(`https://fe-student-api.herokuapp.com/api/hotels?search=${formCityData}`)
+    if (!data.length) {
+        availableHotelsEl.classList.add('homes');
+        availableHotelsEl.innerHTML = `
+        <div class='container'>
+            <h2 class="text-center h2-text">Available hotels</h2>
+        </div>
+        `;
+    } else {
+        bubbleSort(data);
+        availableHotelsEl.classList.add('homes');
+        availableHotelsEl.innerHTML = `
+        <div class='container'>
+          <h2 class="text-center h2-text">Available hotels</h2>
+            <div class="row" id="available-homes">
+              <svg class="homes-svg-right">
+                <use href="#arrow"></use>
+              </svg>
+              <svg class="homes-svg-left, homes-svg-left-displaynone">
+                <use href="#arrow"></use>
+              </svg>
+        </div>
+        `;
+        const availableHomesEl = document.getElementById('available-homes')
+        addCards(data, availableHomesEl);
+    }
+});
+
+//слайдер
+
+
+
 
